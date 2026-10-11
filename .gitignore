@@ -1,0 +1,13 @@
+.env
+.env.*
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+.pytest_cache/
+portfolio_app.log
+*.log
+sent_emails.jsonl
+Thumbs.db
+.DS_Store

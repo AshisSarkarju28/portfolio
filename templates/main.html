@@ -1,0 +1,3731 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ admin_name }} Sarkar | Creative Reel Editor & Short-Form Architect</title>
+    <meta name="description" content="Portfolio of {{ admin_name }} Sarkar, specialized in viral 9:16 vertical reels, retention editing, motion VFX, and sound design.">
+    
+    <!-- Google Identity Services -->
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700;800&display=swap');
+
+        :root {
+            --primary: #0a0709;
+            --secondary: #120f12;
+            --card-bg: #141215;
+            --accent: #ff4820;
+            --accent-glow: rgba(255, 72, 32, 0.4);
+            --neon-green: #52ea38;
+            --neon-green-glow: rgba(82, 234, 56, 0.45);
+            --graph-bg: #111411;
+            --graph-bar-dark: #222722;
+            --text-light: #ffffff;
+            --text-muted: #a3a1a8;
+            --border-dim: rgba(255, 255, 255, 0.08);
+            --font-main: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            background-color: var(--primary);
+        }
+
+        body {
+            font-family: var(--font-main);
+            color: var(--text-light);
+            overflow-x: hidden;
+            background-color: var(--primary);
+        }
+
+        /* --- Navigation --- */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.4rem 5%;
+            z-index: 9999;
+            backdrop-filter: blur(18px);
+            background: rgba(10, 7, 9, 0.72);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            transition: all 0.3s ease;
+            animation: navReveal 0.85s cubic-bezier(0.16, 1, 0.3, 1) both;
+        }
+
+        @keyframes navReveal {
+            0% {
+                opacity: 0;
+                transform: translateY(-24px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .logo-wrap {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .logo-dot {
+            width: 9px;
+            height: 9px;
+            background: var(--accent);
+            border-radius: 50%;
+            box-shadow: 0 0 12px var(--accent);
+            animation: pulse-dot 2s infinite ease-in-out;
+        }
+
+        @keyframes pulse-dot {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(0.75); opacity: 0.6; }
+        }
+
+        .logo {
+            font-size: 1.38rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            color: var(--text-light);
+            background: linear-gradient(135deg, #ffffff 40%, #c4c0c8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.2rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: #b5b3bb;
+            text-decoration: none;
+            font-size: 0.88rem;
+            font-weight: 600;
+            transition: color 0.25s, transform 0.2s;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #fff;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.25s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .nav-user-pill {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid var(--border-dim);
+            padding: 6px 14px 6px 8px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #fff;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .nav-user-pill:hover {
+            border-color: rgba(255, 255, 255, 0.25);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .user-nav-avatar {
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 1px solid var(--neon-green);
+        }
+
+        .nav-login-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid var(--border-dim);
+            padding: 7px 15px;
+            border-radius: 25px;
+            color: #fff;
+            font-size: 0.82rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .nav-login-btn:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .nav-btn {
+            background: #fff;
+            color: #000;
+            padding: 0.45rem 0.45rem 0.45rem 1.15rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .nav-btn:hover {
+            transform: scale(1.04);
+            box-shadow: 0 0 25px rgba(255, 255, 255, 0.25);
+        }
+
+        .nav-btn .arrow {
+            background: var(--accent);
+            color: #fff;
+            width: 26px;
+            height: 26px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-size: 1.1rem;
+            line-height: 1;
+        }
+
+        /* --- Scroll Animation Sequence Hero --- */
+        #scroll-sequence {
+            position: relative;
+            height: 350vh;
+            width: 100%;
+            background-color: var(--primary);
+        }
+
+        .sticky-container {
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            width: 100%;
+            overflow: hidden;
+            background-color: #0b0508;
+            background-image: 
+                radial-gradient(circle at 15% 85%, rgba(255, 40, 120, 0.45) 0%, transparent 45%),
+                radial-gradient(circle at 85% 50%, rgba(255, 50, 40, 0.5) 0%, transparent 50%),
+                radial-gradient(circle at 75% 95%, rgba(255, 100, 20, 0.3) 0%, transparent 40%);
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+        }
+
+        .hero-layout {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 10;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 6%;
+            pointer-events: none;
+        }
+
+        .hero-left {
+            max-width: 480px;
+            margin-top: -30px;
+        }
+
+        .greeting {
+            color: var(--accent);
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.5px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            animation: heroFadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both;
+        }
+
+        .hero-title {
+            font-size: 6.2vw;
+            font-weight: 900;
+            line-height: 0.95;
+            letter-spacing: -2.5px;
+            text-transform: uppercase;
+            background: linear-gradient(110deg, #ffffff 0%, #ffffff 38%, #ff6238 50%, #ffffff 62%, #ffffff 100%);
+            background-size: 250% 100%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 15px 35px rgba(0, 0, 0, 0.8));
+            animation: heroTitleReveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both, heroTitleSheen 5s ease-in-out 1.6s infinite;
+        }
+
+        .hero-right {
+            max-width: 360px;
+            text-align: right;
+            margin-top: -30px;
+        }
+
+        .right-title {
+            font-size: 2.1rem;
+            font-weight: 800;
+            line-height: 1.15;
+            margin-bottom: 1rem;
+            letter-spacing: -0.5px;
+            animation: heroFadeInRight 1s cubic-bezier(0.16, 1, 0.3, 1) 0.45s both;
+        }
+
+        .magnetic-highlight {
+            background: linear-gradient(135deg, var(--accent) 0%, #ff884d 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+            animation: pulseGlow 3s infinite ease-in-out;
+        }
+
+        .right-text {
+            font-size: 0.96rem;
+            color: #d8d6dc;
+            line-height: 1.6;
+            text-align: right;
+            animation: heroFadeInRight 1s cubic-bezier(0.16, 1, 0.3, 1) 0.6s both;
+        }
+
+        .hero-bottom-tags {
+            position: absolute;
+            bottom: 35px;
+            left: 6%; right: 6%;
+            display: flex;
+            justify-content: space-between;
+            z-index: 10;
+            border-top: 1px solid rgba(255, 255, 255, 0.12);
+            padding-top: 22px;
+            pointer-events: none;
+        }
+
+        .hero-bottom-tags .tag {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #fff;
+            letter-spacing: 0.3px;
+            opacity: 0;
+            animation: tagFadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+        }
+
+        .hero-bottom-tags .tag:nth-child(1) { animation-delay: 0.7s; }
+        .hero-bottom-tags .tag:nth-child(2) { animation-delay: 0.82s; }
+        .hero-bottom-tags .tag:nth-child(3) { animation-delay: 0.94s; }
+        .hero-bottom-tags .tag:nth-child(4) { animation-delay: 1.06s; }
+
+        .tag-num {
+            color: var(--accent);
+            margin-right: 6px;
+            font-weight: 800;
+        }
+
+        /* --- Page Refresh Text Animation Keyframes --- */
+        @keyframes heroFadeUp {
+            0% {
+                opacity: 0;
+                transform: translateY(35px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes heroTitleReveal {
+            0% {
+                opacity: 0;
+                transform: translateY(45px) scale(0.96);
+                filter: blur(8px);
+            }
+            60% {
+                filter: blur(0px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        @keyframes heroTitleSheen {
+            0% {
+                background-position: 180% 0;
+            }
+            35%, 100% {
+                background-position: -80% 0;
+            }
+        }
+
+        @keyframes heroFadeInRight {
+            0% {
+                opacity: 0;
+                transform: translateX(45px);
+                filter: blur(4px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+                filter: blur(0);
+            }
+        }
+
+        @keyframes tagFadeUp {
+            0% {
+                opacity: 0;
+                transform: translateY(22px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% {
+                filter: drop-shadow(0 0 12px rgba(255, 72, 32, 0.4));
+            }
+            50% {
+                filter: drop-shadow(0 0 25px rgba(255, 72, 32, 0.85));
+            }
+        }
+
+        #hero-img {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 1;
+            pointer-events: none;
+            opacity: 1;
+            filter: brightness(0.88) contrast(1.06);
+        }
+
+        /* --- Section Shared Styles --- */
+        .content-section {
+            position: relative;
+            z-index: 20;
+            background: var(--primary);
+            padding: 120px 6%;
+        }
+
+        .section-header {
+            margin-bottom: 3.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .section-eyebrow {
+            font-size: 0.85rem;
+            font-weight: 800;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: var(--accent);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            position: relative;
+            width: fit-content;
+        }
+
+        .section-title {
+            font-size: 3.6rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            line-height: 1.05;
+            letter-spacing: -1.5px;
+            position: relative;
+            background: linear-gradient(135deg, #ffffff 60%, rgba(255, 255, 255, 0.6) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .section-title span {
+            background: linear-gradient(135deg, var(--accent) 20%, #ff884d 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .section-desc {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            max-width: 650px;
+            line-height: 1.6;
+            margin-top: 6px;
+        }
+
+        /* ========================================================= */
+        /* --- HORIZONTAL CONTINUOUS MARQUEE VIDEO SHOWCASE --- */
+        /* ========================================================= */
+        .marquee-section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 2.5rem;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+
+        .marquee-live-indicator {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-dim);
+            padding: 8px 16px;
+            border-radius: 30px;
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: #ddd;
+        }
+
+        .marquee-status-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--neon-green);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--neon-green);
+            animation: pulse-dot 1.5s infinite;
+        }
+
+        .marquee-controls-btn {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid var(--border-dim);
+            color: #fff;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .marquee-controls-btn:hover {
+            background: var(--accent);
+            border-color: var(--accent);
+        }
+
+        /* The Marquee Viewport & Scrolling Rail */
+        .marquee-viewport {
+            width: 100vw;
+            margin-left: calc(-50vw + 50%);
+            overflow: hidden;
+            position: relative;
+            padding: 30px 0 45px;
+            mask-image: linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%);
+        }
+
+        .marquee-track {
+            display: flex;
+            gap: 28px;
+            width: max-content;
+            will-change: transform;
+            cursor: pointer;
+        }
+
+        /* 9:16 Video Frame */
+        .marquee-reel-card {
+            width: 275px;
+            height: 488px; /* 9:16 aspect ratio: 275 * 16 / 9 ≈ 488 */
+            aspect-ratio: 9 / 16;
+            border-radius: 30px;
+            overflow: hidden;
+            position: relative;
+            background: #000;
+            border: 2px solid rgba(255, 255, 255, 0.12);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.85);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s, box-shadow 0.4s;
+            flex-shrink: 0;
+        }
+
+        .marquee-reel-card:hover {
+            transform: translateY(-8px) scale(1.03);
+            border-color: rgba(255, 72, 32, 0.6);
+            box-shadow: 0 25px 65px rgba(0, 0, 0, 0.95), 0 0 35px var(--accent-glow);
+        }
+
+        /* When focused/playing via click */
+        .marquee-reel-card.is-playing-focused {
+            transform: translateY(-12px) scale(1.06);
+            border-color: var(--neon-green);
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.95), 0 0 45px var(--neon-green-glow);
+            z-index: 50;
+        }
+
+        .marquee-reel-card video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            border-radius: 28px;
+        }
+
+        .phone-notch-bar {
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 65px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.25);
+            border-radius: 10px;
+            z-index: 20;
+            pointer-events: none;
+        }
+
+        .reel-play-overlay-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 50px;
+            height: 50px;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(8px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 1.2rem;
+            opacity: 0;
+            transition: opacity 0.25s ease;
+            pointer-events: none;
+            z-index: 25;
+        }
+
+        .marquee-reel-card:hover .reel-play-overlay-icon {
+            opacity: 1;
+        }
+
+        .marquee-reel-card.is-playing-focused .reel-play-overlay-icon {
+            opacity: 0;
+        }
+
+        .reel-card-meta {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 40px 18px 18px;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.92) 0%, rgba(0, 0, 0, 0.6) 65%, transparent 100%);
+            z-index: 20;
+            pointer-events: none;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .reel-pill-tag {
+            font-size: 0.68rem;
+            font-weight: 800;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        .reel-card-meta h4 {
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: #fff;
+            line-height: 1.2;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .reel-sound-badge {
+            position: absolute;
+            top: 18px;
+            right: 18px;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #fff;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            z-index: 25;
+            pointer-events: none;
+        }
+
+        .marquee-hint-note {
+            text-align: center;
+            font-family: var(--font-mono);
+            font-size: 0.82rem;
+            color: #666;
+            margin-top: 1.5rem;
+            letter-spacing: 0.5px;
+        }
+
+        /* ========================================================= */
+        /* --- STYLISH BAR GRAPH SECTION (MATCHING SCREENSHOTS) --- */
+        /* ========================================================= */
+        #metrics {
+            background-color: #070907;
+            position: relative;
+            overflow: hidden;
+            border-top: 1px solid rgba(82, 234, 56, 0.08);
+            border-bottom: 1px solid rgba(82, 234, 56, 0.08);
+        }
+
+        .metrics-ambient-glow {
+            position: absolute;
+            width: 550px;
+            height: 550px;
+            background: radial-gradient(circle, rgba(82, 234, 56, 0.12) 0%, transparent 70%);
+            top: 20%;
+            right: -100px;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2.2rem;
+            position: relative;
+            z-index: 2;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        /* Metric Card - Styled directly after user screenshots */
+        .metric-card {
+            background: #111411;
+            border: 1px solid #1c241c;
+            border-radius: 28px;
+            padding: 2.2rem 2.2rem 1.8rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 380px;
+            position: relative;
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.7);
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .metric-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(82, 234, 56, 0.35);
+            box-shadow: 0 25px 55px rgba(0, 0, 0, 0.8), 0 0 25px rgba(82, 234, 56, 0.15);
+        }
+
+        .metric-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+        }
+
+        .metric-card-titles {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .metric-title {
+            font-size: 1.35rem;
+            font-weight: 900;
+            color: #ffffff;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .metric-sub {
+            font-size: 0.78rem;
+            font-family: var(--font-mono);
+            font-weight: 600;
+            color: #555e55;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .metric-badge-group {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 6px;
+        }
+
+        /* Live session status pill (Image 2) */
+        .metric-live-pill {
+            background: rgba(82, 234, 56, 0.1);
+            border: 1px solid rgba(82, 234, 56, 0.3);
+            color: var(--neon-green);
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 3px 10px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .metric-live-dot {
+            width: 7px;
+            height: 7px;
+            background: var(--neon-green);
+            border-radius: 50%;
+            box-shadow: 0 0 8px var(--neon-green);
+            animation: pulse-live 1.8s infinite;
+        }
+
+        @keyframes pulse-live {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(0.85); }
+        }
+
+        /* Percentage Lift Number (+625%, +188%, etc.) */
+        .metric-lift {
+            font-size: 2.6rem;
+            font-weight: 900;
+            color: var(--neon-green);
+            letter-spacing: -1px;
+            line-height: 1;
+            text-shadow: 0 0 25px rgba(82, 234, 56, 0.4);
+        }
+
+        /* Graph Bars Area */
+        .bar-chart-stage {
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            gap: 3.5rem;
+            height: 220px;
+            margin-top: auto;
+            padding-bottom: 0.5rem;
+        }
+
+        .bar-column {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100%;
+            justify-content: flex-end;
+        }
+
+        .bar-value {
+            font-family: var(--font-mono);
+            font-size: 0.95rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            transition: opacity 0.5s;
+        }
+
+        .bar-column.before .bar-value {
+            color: #6d776d;
+        }
+
+        .bar-column.after .bar-value {
+            color: var(--neon-green);
+            text-shadow: 0 0 10px rgba(82, 234, 56, 0.5);
+        }
+
+        /* Bar Elements with Rounded Tops and Growth Animation */
+        .bar-pill {
+            width: 68px;
+            border-radius: 20px 20px 10px 10px;
+            height: 0%; /* Dynamic growth on scroll */
+            transition: height 1.6s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+        }
+
+        .bar-column.before .bar-pill {
+            background: #232923;
+        }
+
+        .bar-column.after .bar-pill {
+            background: var(--neon-green);
+            box-shadow: 
+                0 0 35px rgba(82, 234, 56, 0.45),
+                inset 0 0 15px rgba(255, 255, 255, 0.3);
+        }
+
+        .bar-label {
+            margin-top: 12px;
+            font-family: var(--font-mono);
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .bar-column.before .bar-label {
+            color: #555e55;
+        }
+
+        .bar-column.after .bar-label {
+            color: var(--neon-green);
+            text-shadow: 0 0 8px rgba(82, 234, 56, 0.3);
+        }
+
+        /* Horizontal Progress Bar for Client Retention (Card 4) */
+        .retention-bar-stage {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: auto;
+            padding: 1.5rem 0 1rem;
+        }
+
+        .retention-track {
+            width: 100%;
+            height: 24px;
+            background: #232923;
+            border-radius: 30px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .retention-fill {
+            height: 100%;
+            width: 0%; /* Animated on scroll */
+            background: var(--neon-green);
+            border-radius: 30px;
+            box-shadow: 0 0 25px rgba(82, 234, 56, 0.5);
+            transition: width 1.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .retention-labels {
+            display: flex;
+            justify-content: space-between;
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            font-weight: 700;
+        }
+
+        .retention-label-left {
+            color: #6d776d;
+        }
+
+        .retention-label-right {
+            color: var(--neon-green);
+        }
+
+        .metrics-footer-caption {
+            text-align: center;
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            color: #555e55;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-top: 3.5rem;
+        }
+
+        /* ========================================================= */
+        /* --- STYLISH EXPANDED ABOUT SECTION --- */
+        /* ========================================================= */
+        #about-section {
+            background-color: var(--primary);
+            position: relative;
+            border-top: 1px solid var(--border-dim);
+            padding: 120px 6% 90px;
+            overflow: hidden;
+        }
+
+        .about-wrap {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 4rem;
+        }
+
+        /* ========================================================= */
+        /* --- STYLISH ABOUT SECTION (WITH ROTATING RECT BG ANIMATION) --- */
+        /* ========================================================= */
+        .about-main-grid {
+            display: grid;
+            grid-template-columns: 380px 1fr;
+            gap: 4.8rem;
+            align-items: center;
+        }
+
+        /* --- Left Side: Resized Photo Stage with Rotating Rect Background Animation --- */
+        .about-photo-wrapper {
+            position: relative;
+            width: 360px;
+            height: 480px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+        }
+
+        /* Rotating Rectangular Frame in the Background */
+        .rotating-rect-outer {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 375px;
+            height: 495px;
+            margin-top: -247px;
+            margin-left: -187px;
+            pointer-events: none;
+            z-index: 1;
+            animation: rotateBgRect 14s linear infinite;
+        }
+
+        .rotating-rect-frame {
+            width: 100%;
+            height: 100%;
+            border-radius: 36px;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            background: linear-gradient(135deg, rgba(255, 72, 32, 0.28), rgba(214, 36, 159, 0.3), rgba(139, 92, 246, 0.2), rgba(255, 255, 255, 0.12));
+            box-shadow: 
+                0 0 35px rgba(255, 255, 255, 0.35),
+                0 0 70px rgba(214, 36, 159, 0.45),
+                0 0 90px rgba(255, 72, 32, 0.35),
+                inset 0 0 25px rgba(255, 255, 255, 0.25);
+        }
+
+        /* Synchronized luminous glowing halo behind the frame */
+        .rotating-rect-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 360px;
+            height: 480px;
+            margin-top: -240px;
+            margin-left: -180px;
+            border-radius: 36px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.7) 0%, rgba(214, 36, 159, 0.5) 38%, rgba(255, 72, 32, 0.35) 65%, transparent 80%);
+            filter: blur(38px);
+            z-index: 1;
+            pointer-events: none;
+            animation: rotateBgRect 14s linear infinite reverse;
+        }
+
+        @keyframes rotateBgRect {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* The Resized Stylish Profile Card in Front */
+        .about-profile-card {
+            position: relative;
+            z-index: 3;
+            width: 340px;
+            height: 460px;
+            border-radius: 28px;
+            background: linear-gradient(165deg, #16111a, #0b080d);
+            border: 1.5px solid rgba(255, 255, 255, 0.18);
+            box-shadow: 
+                0 25px 60px rgba(0, 0, 0, 0.88),
+                inset 0 0 30px rgba(0, 0, 0, 0.7);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 14px;
+            transition: transform 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .about-profile-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255, 255, 255, 0.38);
+            box-shadow: 
+                0 35px 85px rgba(0, 0, 0, 0.95),
+                0 0 35px rgba(255, 72, 32, 0.3);
+        }
+
+        /* Card Inner Studio / Portrait Area */
+        .card-inner-studio {
+            position: relative;
+            width: 100%;
+            height: 380px;
+            border-radius: 20px;
+            overflow: hidden;
+            background: #0d0911;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Resized & Framed Portrait Image */
+        .card-portrait-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 10%;
+            border-radius: 20px;
+            filter: contrast(1.05) brightness(1.02);
+            transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), filter 0.45s ease;
+            user-select: none;
+            pointer-events: none;
+        }
+
+        .about-profile-card:hover .card-portrait-img {
+            transform: scale(1.05);
+            filter: contrast(1.08) brightness(1.05);
+        }
+
+        /* Card Bottom Status Bar (matching reference) */
+        .card-status-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(22, 17, 26, 0.95);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 8px 14px;
+            border-radius: 14px;
+            margin-top: 10px;
+        }
+
+        .status-indicator {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.72rem;
+            font-weight: 800;
+            color: #fff;
+            letter-spacing: 0.5px;
+        }
+
+        .status-pulse-dot {
+            width: 7px;
+            height: 7px;
+            background: var(--neon-green);
+            border-radius: 50%;
+            box-shadow: 0 0 8px var(--neon-green);
+            animation: pulse-dot 1.8s infinite ease-in-out;
+        }
+
+        .status-year {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+        }
+
+        /* --- Right Side: Profile Info Column --- */
+        .about-info-col {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
+
+        .profile-system-tag {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            color: var(--accent);
+            background: rgba(255, 72, 32, 0.1);
+            border: 1px solid rgba(255, 72, 32, 0.25);
+            padding: 5px 14px;
+            border-radius: 20px;
+            width: fit-content;
+        }
+
+        .profile-greeting {
+            font-size: 3rem;
+            font-weight: 800;
+            line-height: 1.15;
+            letter-spacing: -0.8px;
+            color: #ffffff;
+        }
+
+        .profile-greeting .gradient-name {
+            background: linear-gradient(135deg, #ffffff 30%, var(--accent) 70%, #ff8855 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .profile-bio-text {
+            font-size: 1.05rem;
+            color: #d1ced9;
+            line-height: 1.7;
+        }
+
+        .profile-bio-sub {
+            font-size: 0.95rem;
+            color: #9c99a4;
+            line-height: 1.6;
+        }
+
+        /* 3 Sleek Spec Cards Row (replacing bulky pillars) */
+        .profile-specs-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.2rem;
+            margin-top: 1rem;
+        }
+
+        .spec-card {
+            background: linear-gradient(145deg, rgba(25, 20, 29, 0.9), rgba(15, 11, 18, 0.9));
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 18px;
+            padding: 1.2rem 1.4rem;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .spec-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--accent);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.6), 0 0 20px rgba(255, 72, 32, 0.15);
+        }
+
+        .spec-title {
+            font-size: 1.08rem;
+            font-weight: 800;
+            color: #fff;
+        }
+
+        .spec-sub {
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* ========================================================= */
+        /* --- VIDEO EDITING SOFTWARE SUITE (ANIMATED MARQUEE) --- */
+        /* ========================================================= */
+        .software-suite-section {
+            display: flex;
+            flex-direction: column;
+            gap: 1.8rem;
+            margin-top: 2rem;
+        }
+
+        .software-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            border-bottom: 1px solid var(--border-dim);
+            padding-bottom: 1.2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .software-title-wrap h3 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .software-title-wrap p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-top: 5px;
+        }
+
+        /* Continuous Gliding Marquee Rail (Just like the video strip) */
+        .software-marquee-viewport {
+            width: 100vw;
+            margin-left: calc(-50vw + 50%);
+            overflow: hidden;
+            position: relative;
+            padding: 15px 0 25px;
+            mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+        }
+
+        .software-marquee-track {
+            display: flex;
+            gap: 22px;
+            width: max-content;
+            will-change: transform;
+            animation: softwareMarqueeLoop 32s linear infinite;
+        }
+
+        .software-marquee-track:hover {
+            animation-play-state: paused; /* Pauses smoothly when user hovers */
+        }
+
+        @keyframes softwareMarqueeLoop {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .software-card {
+            width: 295px;
+            flex-shrink: 0;
+            background: linear-gradient(145deg, #151117, #0f0c11);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 22px;
+            padding: 1.6rem 1.4rem;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+            cursor: pointer;
+        }
+
+        .software-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: transparent;
+            transition: background 0.3s ease;
+        }
+
+        .software-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            border-color: rgba(255, 255, 255, 0.28);
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.7);
+        }
+
+        /* Software Brand Specific Hover Accents */
+        .software-card.premiere:hover::before { background: #9999FF; box-shadow: 0 0 15px #9999FF; }
+        .software-card.filmora:hover::before { background: linear-gradient(90deg, #00e5ff, #ff5e62); box-shadow: 0 0 15px #00e5ff; }
+        .software-card.aftereffects:hover::before { background: #cf96fd; box-shadow: 0 0 15px #cf96fd; }
+        .software-card.davinci:hover::before { background: linear-gradient(90deg, #ff3366, #ffbb00, #00d2ff); box-shadow: 0 0 15px #ffbb00; }
+        .software-card.capcut:hover::before { background: #00f0ff; box-shadow: 0 0 15px #00f0ff; }
+        .software-card.audition:hover::before { background: #00e5ff; box-shadow: 0 0 15px #00e5ff; }
+        .software-card.blender:hover::before { background: #ea7600; box-shadow: 0 0 15px #ea7600; }
+
+        .software-icon-wrap {
+            width: 48px;
+            height: 48px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-size: 1.25rem;
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .software-card:hover .software-icon-wrap {
+            transform: scale(1.1) rotate(2deg);
+        }
+
+        .software-icon-wrap.pr-icon {
+            background: #00005b;
+            color: #9999ff;
+            border: 1px solid #3d3d8a;
+            box-shadow: 0 0 15px rgba(153, 153, 255, 0.25);
+            font-family: var(--font-mono);
+        }
+
+        .software-icon-wrap.filmora-icon {
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            border: 1px solid rgba(0, 229, 255, 0.35);
+            box-shadow: 0 0 15px rgba(0, 229, 255, 0.25);
+        }
+
+        .software-icon-wrap.ae-icon {
+            background: #00005b;
+            color: #cf96fd;
+            border: 1px solid #4a3375;
+            box-shadow: 0 0 15px rgba(207, 150, 253, 0.25);
+            font-family: var(--font-mono);
+        }
+
+        .software-icon-wrap.davinci-icon {
+            background: #191420;
+            border: 1px solid rgba(255, 187, 0, 0.3);
+            box-shadow: 0 0 15px rgba(255, 187, 0, 0.2);
+        }
+
+        .software-icon-wrap.capcut-icon {
+            background: #111b22;
+            color: #00f0ff;
+            border: 1px solid rgba(0, 240, 255, 0.3);
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.2);
+            font-family: var(--font-mono);
+        }
+
+        .software-icon-wrap.au-icon {
+            background: #00005b;
+            color: #00e5ff;
+            border: 1px solid #005f73;
+            box-shadow: 0 0 15px rgba(0, 229, 255, 0.25);
+            font-family: var(--font-mono);
+        }
+
+        .software-icon-wrap.blender-icon {
+            background: #1a1622;
+            color: #ea7600;
+            border: 1px solid rgba(234, 118, 0, 0.35);
+            box-shadow: 0 0 15px rgba(234, 118, 0, 0.25);
+            font-family: var(--font-mono);
+        }
+
+        .software-name {
+            font-size: 1.05rem;
+            font-weight: 800;
+            color: #fff;
+        }
+
+        .software-role {
+            font-size: 0.76rem;
+            font-weight: 700;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: -8px;
+        }
+
+        .software-desc {
+            font-size: 0.82rem;
+            color: #9d9aa3;
+            line-height: 1.5;
+        }
+
+        .software-tag {
+            align-self: flex-start;
+            margin-top: auto;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 4px 10px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-dim);
+            color: #bbb;
+        }
+
+        /* ========================================================= */
+        /* --- DEDICATED SOCIAL CONNECT DOWN BAR (AFTER MAIL) --- */
+        /* ========================================================= */
+        .social-down-bar-section {
+            background: #080609;
+            padding: 55px 6% 45px;
+            position: relative;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .down-bar-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, rgba(24, 18, 26, 0.96), rgba(15, 11, 18, 0.96));
+            backdrop-filter: blur(20px);
+            border: 1.5px solid rgba(255, 255, 255, 0.12);
+            border-radius: 30px;
+            padding: 2rem 2.6rem;
+            box-shadow: 0 30px 70px rgba(0, 0, 0, 0.75), 0 0 50px rgba(255, 72, 32, 0.12);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .down-bar-container::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 5px;
+            background: linear-gradient(180deg, var(--accent), var(--neon-green));
+        }
+
+        .down-bar-brand-col {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            max-width: 440px;
+        }
+
+        .status-pill-live {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(82, 234, 56, 0.1);
+            border: 1px solid rgba(82, 234, 56, 0.3);
+            padding: 5px 14px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--neon-green);
+            letter-spacing: 0.5px;
+            width: fit-content;
+        }
+
+        .status-dot-pulse {
+            width: 7px;
+            height: 7px;
+            background: var(--neon-green);
+            border-radius: 50%;
+            box-shadow: 0 0 8px var(--neon-green);
+            animation: pulse-dot 1.8s infinite ease-in-out;
+        }
+
+        .down-bar-title {
+            font-size: 1.45rem;
+            font-weight: 800;
+            color: #fff;
+            letter-spacing: -0.3px;
+        }
+
+        .down-bar-sub {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        .down-bar-actions-col {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 12px;
+            flex-wrap: nowrap;
+            flex-shrink: 0;
+        }
+
+        .down-bar-social-links {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: nowrap;
+        }
+
+        .social-channel-card {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 9px 15px;
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #fff;
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            white-space: nowrap;
+        }
+
+        .social-card-icon-wrap {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .social-card-icon-wrap svg {
+            width: 18px;
+            height: 18px;
+            fill: currentColor;
+            transition: transform 0.25s;
+        }
+
+        .social-card-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .social-card-name {
+            font-size: 0.86rem;
+            font-weight: 800;
+            color: #fff;
+        }
+
+        .social-card-desc {
+            font-size: 0.72rem;
+            color: #9c99a2;
+        }
+
+        .social-card-arrow {
+            font-size: 0.95rem;
+            color: #777;
+            margin-left: 2px;
+            transition: transform 0.25s, color 0.25s;
+        }
+
+        .social-channel-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .social-channel-card:hover .social-card-arrow {
+            transform: translate(2px, -2px);
+            color: #fff;
+        }
+
+        .social-channel-card.yt-card:hover {
+            background: rgba(255, 0, 0, 0.15);
+            border-color: #ff0000;
+            box-shadow: 0 10px 25px rgba(255, 0, 0, 0.4);
+        }
+        .social-channel-card.yt-card:hover .social-card-icon-wrap {
+            background: #ff0000;
+            color: #fff;
+        }
+
+        .social-channel-card.ig-card:hover {
+            background: rgba(225, 48, 108, 0.15);
+            border-color: #d6249f;
+            box-shadow: 0 10px 25px rgba(214, 36, 159, 0.4);
+        }
+        .social-channel-card.ig-card:hover .social-card-icon-wrap {
+            background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+            color: #fff;
+        }
+
+        .social-channel-card.li-card:hover {
+            background: rgba(0, 119, 181, 0.15);
+            border-color: #0077b5;
+            box-shadow: 0 10px 25px rgba(0, 119, 181, 0.4);
+        }
+        .social-channel-card.li-card:hover .social-card-icon-wrap {
+            background: #0077b5;
+            color: #fff;
+        }
+
+        .down-bar-top-btn {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #fff;
+            padding: 10px 18px;
+            border-radius: 18px;
+            font-size: 0.82rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.25s ease;
+        }
+
+        .down-bar-top-btn:hover {
+            background: var(--accent);
+            border-color: var(--accent);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px var(--accent-glow);
+        }
+
+        /* ========================================================= */
+        /* --- STYLISH HIGH-CONTRAST WHITE THEME FOR MAIL SECTION --- */
+        /* ========================================================= */
+        #contact {
+            background: #ffffff;
+            background-image: 
+                radial-gradient(circle at 10% 15%, rgba(255, 72, 32, 0.05) 0%, transparent 45%),
+                radial-gradient(circle at 90% 85%, rgba(82, 234, 56, 0.06) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(139, 92, 246, 0.03) 0%, transparent 60%);
+            border-top: 1px solid #e2e8f0;
+            padding: 120px 6%;
+            position: relative;
+            box-shadow: 0 -25px 60px rgba(0, 0, 0, 0.05);
+            color: #0f172a;
+        }
+
+        .mail-section-wrap {
+            max-width: 1050px;
+            margin: 0 auto;
+        }
+
+        #contact .section-eyebrow {
+            color: #ff4820;
+            background: #fff1ee;
+            border: 1px solid #fed7aa;
+            padding: 6px 16px;
+            border-radius: 30px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            display: inline-block;
+            margin-bottom: 0.8rem;
+        }
+
+        #contact .section-title {
+            color: #0f172a;
+        }
+
+        #contact .section-title span {
+            background: linear-gradient(135deg, #ff4820 0%, #e11d48 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        #contact .section-desc {
+            color: #64748b;
+        }
+
+        /* Identity Bar in White Theme */
+        .mail-header-banner {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 2.5rem;
+        }
+
+        #contact .identity-card {
+            background: #ffffff;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 22px;
+            padding: 1.5rem 1.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(15, 23, 42, 0.04);
+            transition: all 0.25s ease;
+        }
+
+        #contact .identity-card:hover {
+            box-shadow: 0 15px 35px rgba(15, 23, 42, 0.08);
+            transform: translateY(-2px);
+        }
+
+        #contact .identity-card.admin-card {
+            border-left: 5px solid var(--accent);
+        }
+
+        #contact .identity-card.user-card {
+            border-left: 5px solid #16a34a;
+        }
+
+        #contact .identity-info {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        #contact .identity-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: #f1f5f9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 1.1rem;
+            color: #0f172a;
+            border: 1px solid #cbd5e1;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04);
+        }
+
+        #contact .identity-text h4 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #0f172a;
+        }
+
+        #contact .identity-text p {
+            font-size: 0.85rem;
+            color: #64748b;
+            font-family: var(--font-mono);
+        }
+
+        #contact .identity-tag {
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            padding: 5px 12px;
+            border-radius: 20px;
+            letter-spacing: 1px;
+        }
+
+        #contact .identity-tag.admin-tag {
+            background: #fff1ee;
+            color: #ff4820;
+            border: 1px solid #fed7aa;
+        }
+
+        #contact .identity-tag.user-tag {
+            background: #f0fdf4;
+            color: #16a34a;
+            border: 1px solid #bbf7d0;
+        }
+
+        /* Collaborative Mail Studio in White Theme */
+        #contact .mail-studio-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2.5rem;
+            background: #ffffff;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 30px;
+            padding: 3rem;
+            box-shadow: 
+                0 30px 70px -15px rgba(15, 23, 42, 0.08),
+                0 0 0 1px rgba(0, 0, 0, 0.02);
+        }
+
+        #contact .form-col-title {
+            font-size: 1.25rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #0f172a;
+        }
+
+        #contact .form-col-title span {
+            color: #ff4820;
+            font-family: var(--font-mono);
+        }
+
+        #contact .mail-input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            margin-bottom: 1.25rem;
+        }
+
+        #contact .mail-input-group label {
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: #475569;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        #contact .mail-input-group input, 
+        #contact .mail-input-group textarea {
+            background: #f8fafc;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 14px;
+            padding: 0.95rem 1.25rem;
+            color: #0f172a;
+            font-family: var(--font-main);
+            font-size: 0.95rem;
+            transition: all 0.25s ease;
+            outline: none;
+        }
+
+        #contact .mail-input-group input::placeholder, 
+        #contact .mail-input-group textarea::placeholder {
+            color: #94a3b8;
+        }
+
+        #contact .mail-input-group input:focus, 
+        #contact .mail-input-group textarea:focus {
+            border-color: #ff4820;
+            box-shadow: 0 0 0 4px rgba(255, 72, 32, 0.12);
+            background: #ffffff;
+        }
+
+        #contact .mail-input-group input[readonly] {
+            background: #f1f5f9;
+            color: #64748b;
+            cursor: not-allowed;
+            border-style: dashed;
+            border-color: #cbd5e1;
+        }
+
+        #contact .dual-inputs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        /* Action Buttons */
+        #contact .btn-ai-enhance {
+            width: 100%;
+            background: linear-gradient(135deg, #7c3aed, #ec4899, var(--accent));
+            color: #fff;
+            border: none;
+            padding: 1.15rem;
+            border-radius: 16px;
+            font-size: 1.05rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            box-shadow: 0 12px 30px rgba(236, 72, 153, 0.25);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            margin-top: 1rem;
+        }
+
+        #contact .btn-ai-enhance:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 16px 40px rgba(236, 72, 153, 0.45);
+            filter: brightness(1.08);
+        }
+
+        #contact .btn-ai-enhance:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        #contact .btn-send-mail {
+            width: 100%;
+            background: #16a34a;
+            color: #ffffff;
+            border: none;
+            padding: 1.15rem;
+            border-radius: 16px;
+            font-size: 1.05rem;
+            font-weight: 800;
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            box-shadow: 0 12px 30px rgba(22, 163, 74, 0.35);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            margin-top: 1rem;
+            animation: pulse-send-light 2s infinite;
+        }
+
+        @keyframes pulse-send-light {
+            0%, 100% { box-shadow: 0 0 20px rgba(22, 163, 74, 0.35); }
+            50% { box-shadow: 0 0 35px rgba(22, 163, 74, 0.6); }
+        }
+
+        #contact .btn-send-mail:hover {
+            transform: translateY(-3px) scale(1.02);
+            background: #15803d;
+        }
+
+        /* AI Preview Column in White Theme */
+        #contact .ai-preview-column {
+            background: #f8fafc;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 22px;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        #contact .ai-preview-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 1rem;
+            border-bottom: 1.5px solid #e2e8f0;
+            margin-bottom: 1.2rem;
+        }
+
+        #contact .ai-engine-tag {
+            background: #f3e8ff;
+            border: 1px solid #d8b4fe;
+            color: #7e22ce;
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 5px 12px;
+            border-radius: 18px;
+        }
+
+        #contact .enhanced-textarea {
+            width: 100%;
+            height: 290px;
+            background: #ffffff;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 14px;
+            padding: 1.2rem;
+            color: #0f172a;
+            font-family: var(--font-main);
+            font-size: 0.94rem;
+            line-height: 1.65;
+            resize: vertical;
+            outline: none;
+            transition: border-color 0.25s, box-shadow 0.25s;
+        }
+
+        #contact .enhanced-textarea:focus {
+            border-color: #16a34a;
+            box-shadow: 0 0 0 4px rgba(22, 163, 74, 0.12);
+        }
+
+        #contact .ai-placeholder-msg {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 290px;
+            text-align: center;
+            color: #64748b;
+            gap: 12px;
+            background: #ffffff;
+            border: 2px dashed #cbd5e1;
+            border-radius: 14px;
+            padding: 2rem;
+        }
+
+        #contact .ai-placeholder-msg svg {
+            color: #94a3b8 !important;
+        }
+
+        #contact .ai-meta-row {
+            margin-top: 1.2rem;
+            font-size: 0.78rem;
+            color: #64748b;
+            font-family: var(--font-mono);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* ========================================================= */
+        /* --- GOOGLE LOGIN POPUP MODAL --- */
+        /* ========================================================= */
+        .modal-backdrop {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(14px);
+            z-index: 10000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal-backdrop.show {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-card {
+            background: #151317;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 28px;
+            padding: 2.8rem 2.2rem;
+            width: 90%;
+            max-width: 440px;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 35px 80px rgba(0, 0, 0, 0.9);
+            transform: scale(0.9);
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .modal-backdrop.show .modal-card {
+            transform: scale(1);
+        }
+
+        .modal-close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.08);
+            border: none;
+            color: #fff;
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+        }
+
+        .modal-close-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .modal-icon-badge {
+            width: 64px;
+            height: 64px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2rem;
+        }
+
+        .modal-card h3 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .modal-card p {
+            color: var(--text-muted);
+            font-size: 0.92rem;
+            line-height: 1.5;
+            margin-bottom: 2rem;
+        }
+
+        .google-auth-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 1.2rem;
+        }
+
+        .dev-login-fallback {
+            border-top: 1px solid var(--border-dim);
+            padding-top: 1.2rem;
+            margin-top: 1.2rem;
+        }
+
+        .dev-login-fallback p {
+            font-size: 0.78rem;
+            color: #777;
+            margin-bottom: 0.8rem;
+        }
+
+        .btn-dev-quick-login {
+            background: rgba(82, 234, 56, 0.12);
+            border: 1px solid var(--neon-green);
+            color: var(--neon-green);
+            padding: 9px 18px;
+            border-radius: 20px;
+            font-size: 0.82rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-dev-quick-login:hover {
+            background: var(--neon-green);
+            color: #000;
+        }
+
+        /* Toast Notifications */
+        .toast-notify {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #161816;
+            border: 1px solid var(--neon-green);
+            border-radius: 16px;
+            padding: 16px 24px;
+            color: #fff;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+            z-index: 11000;
+            display: none;
+            align-items: center;
+            gap: 14px;
+            animation: slide-in 0.4s ease;
+        }
+
+        @keyframes slide-in {
+            from { transform: translateY(100px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        /* --- Footer & Social Hub --- */
+        footer {
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 3.5rem 6%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.88rem;
+            color: #888;
+            background: #060406;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+
+        .footer-left {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .footer-social-strip {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .footer-social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid var(--border-dim);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            text-decoration: none;
+            transition: all 0.25s ease;
+        }
+
+        .footer-social-icon svg {
+            width: 18px;
+            height: 18px;
+            fill: currentColor;
+        }
+
+        .footer-social-icon.yt:hover {
+            background: #ff0000;
+            border-color: #ff0000;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 0, 0, 0.4);
+        }
+
+        .footer-social-icon.ig:hover {
+            background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+            border-color: #d6249f;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(214, 36, 159, 0.4);
+        }
+
+        .footer-social-icon.li:hover {
+            background: #0077b5;
+            border-color: #0077b5;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 119, 181, 0.4);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .footer-links a {
+            color: #888;
+            text-decoration: none;
+            transition: color 0.2s;
+            font-size: 0.85rem;
+        }
+
+        .footer-links a:hover {
+            color: #fff;
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 950px) {
+            .hero-layout {
+                flex-direction: column;
+                justify-content: center;
+                text-align: center;
+            }
+            .hero-right {
+                text-align: center;
+                margin-top: 2rem;
+            }
+            .right-text { text-align: center; }
+            .hero-bottom-tags {
+                flex-wrap: wrap;
+                gap: 12px;
+                justify-content: center;
+            }
+            .nav-links { display: none; }
+            .metrics-grid {
+                grid-template-columns: 1fr;
+            }
+            .about-main-grid {
+                grid-template-columns: 1fr;
+                gap: 3.5rem;
+                justify-items: center;
+                text-align: center;
+            }
+            .about-info-col {
+                align-items: center;
+            }
+            .profile-specs-row {
+                width: 100%;
+                max-width: 600px;
+            }
+            .down-bar-container {
+                flex-direction: column;
+                text-align: center;
+                padding: 1.8rem;
+                gap: 1.8rem;
+            }
+            .down-bar-brand-col {
+                align-items: center;
+                max-width: 100%;
+            }
+            .down-bar-actions-col {
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+            .down-bar-social-links {
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+            .mail-header-banner {
+                grid-template-columns: 1fr;
+            }
+            .mail-studio-grid {
+                grid-template-columns: 1fr;
+                padding: 1.8rem;
+            }
+            footer {
+                flex-direction: column;
+                text-align: center;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation (Clean & Professional: removed 9:16 tag and status button) -->
+    <nav>
+        <a href="#scroll-sequence" class="logo-wrap">
+            <span class="logo-dot"></span>
+            <span class="logo">{{ admin_name }} Sarkar</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="#scroll-sequence">Home</a></li>
+            <li><a href="#projects">Vertical Reels</a></li>
+            <li><a href="#metrics">Analytics</a></li>
+            <li><a href="#about-section">About</a></li>
+            <li><a href="#contact">Collaborate</a></li>
+        </ul>
+        <div class="nav-right">
+            <!-- User Login Profile Badge in Nav -->
+            {% if current_user %}
+                <a href="#contact" class="nav-user-pill" title="Signed in via {{ current_user.auth_provider }}">
+                    {% if current_user.picture %}
+                        <img src="{{ current_user.picture }}" alt="User Avatar" class="user-nav-avatar">
+                    {% else %}
+                        <div class="user-nav-avatar" style="background: #333; display: flex; align-items: center; justify-content: center; font-size: 0.75rem;">
+                            {{ current_user.name[0] }}
+                        </div>
+                    {% endif %}
+                    <span>{{ current_user.name.split(' ')[0] }}</span>
+                </a>
+                <a href="/api/auth/logout" class="nav-login-btn" style="padding: 5px 12px; font-size: 0.75rem;" title="Sign out">Log out</a>
+            {% else %}
+                <button onclick="openGoogleModal()" class="nav-login-btn">
+                    <svg width="14" height="14" viewBox="0 0 24 24"><path fill="#EA4335" d="M12 5c1.56 0 2.96.54 4.07 1.58l3.05-3.05C17.27 1.83 14.82 1 12 1 7.42 1 3.51 3.63 1.62 7.47l3.77 2.93C6.34 7.23 8.94 5 12 5z"/><path fill="#4285F4" d="M23.5 12.28c0-.79-.07-1.54-.19-2.28H12v4.51h6.47c-.28 1.48-1.12 2.74-2.38 3.58l3.7 2.87c2.16-1.99 3.41-4.92 3.41-8.68z"/><path fill="#FBBC05" d="M5.39 14.6c-.24-.72-.39-1.49-.39-2.3s.15-1.58.39-2.3L1.62 7.07C.59 9.13 0 11.49 0 14s.59 4.87 1.62 6.93l3.77-2.93z"/><path fill="#34A853" d="M12 23c3.24 0 5.96-1.07 7.95-2.92l-3.7-2.87c-1.08.72-2.45 1.16-4.25 1.16-3.06 0-5.66-2.23-6.61-5.4L1.62 15.93C3.51 19.77 7.42 23 12 23z"/></svg>
+                    Google Login
+                </button>
+            {% endif %}
+
+            <a href="#contact" class="nav-btn">Get In Touch <span class="arrow">→</span></a>
+        </div>
+    </nav>
+
+    <!-- Scroll Sequence Hero -->
+    <section id="scroll-sequence">
+        <div class="sticky-container">
+            
+            <!-- Hero Typography Layout -->
+            <div class="hero-layout" id="hero-text">
+                <div class="hero-left">
+                    <p class="greeting"><span class="logo-dot" style="width:7px; height:7px;"></span> Hey, I'm {{ admin_name }} Sarkar</p>
+                    <h1 class="hero-title">Creative<br>Editor</h1>
+                </div>
+                <div class="hero-right">
+                    <h2 class="right-title">Retention edits that<br>feel <span class="magnetic-highlight">magnetic.</span></h2>
+                    <p class="right-text">From raw multicam and podcast cuts to viral vertical short-form reels that dominate social algorithms.</p>
+                </div>
+            </div>
+
+            <div class="hero-bottom-tags" id="hero-tags">
+                <span class="tag"><span class="tag-num">#01</span> 9:16 Vertical Reels</span>
+                <span class="tag"><span class="tag-num">#02</span> Retention Architecture</span>
+                <span class="tag"><span class="tag-num">#03</span> Dynamic Sound FX</span>
+                <span class="tag"><span class="tag-num">#04</span> Signature Color Grade</span>
+            </div>
+
+            <!-- Subject Image (18 frames animated scrubbing) -->
+            <img id="hero-img" src="/static/photos/ezgif-frame-001.jpg" alt="{{ admin_name }} Sarkar Portfolio">
+            
+        </div>
+    </section>
+
+    <!-- ========================================================= -->
+    <!-- --- HORIZONTAL CONTINUOUS MARQUEE VIDEO SHOWCASE --- -->
+    <!-- ========================================================= -->
+    <section class="content-section" id="projects">
+        
+        <div class="marquee-section-header">
+            <div class="section-header" style="margin-bottom: 0;">
+                <span class="section-eyebrow">Visual Production</span>
+                <h2 class="section-title">Continuous <span>Reel Ribbon</span></h2>
+                <p class="section-desc">Horizontal ticker of short-form edits playing simultaneously. Click any reel to focus and pause movement; finishes will resume flow automatically.</p>
+            </div>
+
+            <div style="display: flex; gap: 12px; align-items: center;">
+                <div class="marquee-live-indicator">
+                    <span class="marquee-status-dot"></span>
+                    <span id="marquee-status-label">Continuous Motion: Active</span>
+                </div>
+                <button class="marquee-controls-btn" id="toggle-marquee-btn" onclick="toggleMarqueeMotion()">
+                    <span id="toggle-motion-icon">⏸</span> <span id="toggle-motion-text">Pause Scroll</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- The Continuous Scrolling Rail (Right to Left) -->
+        <div class="marquee-viewport" id="marquee-viewport">
+            <div class="marquee-track" id="marquee-track">
+                
+                <!-- Repeat list twice for seamless infinite marquee loop -->
+                {% set reel_items = videos if videos and videos|length > 0 else [
+                    {'title': 'Dopamine Hook & Dynamic Zoom', 'url': 'https://assets.mixkit.co/videos/preview/mixkit-vertical-portrait-of-a-woman-in-the-street-41584-large.mp4'},
+                    {'title': 'Kinetic Typography & 3D Elements', 'url': 'https://assets.mixkit.co/videos/preview/mixkit-vertical-animation-of-futuristic-lines-41589-large.mp4'},
+                    {'title': 'Cinematic Soundscapes & Foley', 'url': 'https://assets.mixkit.co/videos/preview/mixkit-vertical-skater-skating-outdoors-41586-large.mp4'},
+                    {'title': 'Fast-Paced Brand Commercial', 'url': 'https://assets.mixkit.co/videos/preview/mixkit-vertical-portrait-of-a-young-man-walking-41583-large.mp4'}
+                ] %}
+
+                <!-- First Set of Reels -->
+                {% for video in reel_items %}
+                <div class="marquee-reel-card" data-video-id="reel_{{ loop.index0 }}">
+                    <div class="phone-notch-bar"></div>
+                    <div class="reel-sound-badge">🔊</div>
+                    <video src="{{ video.url }}" playsinline loop muted preload="auto" oncontextmenu="return false;"></video>
+                    <div class="reel-play-overlay-icon">▶</div>
+                    <div class="reel-card-meta">
+                        <span class="reel-pill-tag">9:16 Reel</span>
+                        <h4>{{ video.title }}</h4>
+                    </div>
+                </div>
+                {% endfor %}
+
+                <!-- Duplicate Second Set for Seamless Infinite Loop -->
+                {% for video in reel_items %}
+                <div class="marquee-reel-card" data-video-id="reel_dup_{{ loop.index0 }}">
+                    <div class="phone-notch-bar"></div>
+                    <div class="reel-sound-badge">🔊</div>
+                    <video src="{{ video.url }}" playsinline loop muted preload="auto" oncontextmenu="return false;"></video>
+                    <div class="reel-play-overlay-icon">▶</div>
+                    <div class="reel-card-meta">
+                        <span class="reel-pill-tag">9:16 Reel</span>
+                        <h4>{{ video.title }}</h4>
+                    </div>
+                </div>
+                {% endfor %}
+
+            </div>
+        </div>
+
+    </section>
+
+    <!-- ========================================================= -->
+    <!-- --- STYLISH BAR GRAPH SECTION WITH RICH ANIMATIONS --- -->
+    <!-- ========================================================= -->
+    <section class="content-section" id="metrics">
+        <div class="metrics-ambient-glow"></div>
+
+        <div class="section-header" style="max-width: 1100px; margin: 0 auto 3.5rem;">
+            <span class="section-eyebrow" style="color: var(--neon-green);">Proven Impact</span>
+            <h2 class="section-title">Performance <span>Metrics</span></h2>
+            <p class="section-desc">Measurable audience retention, watch-time velocity, and client growth engineered across every cut.</p>
+        </div>
+
+        <div class="metrics-grid">
+            
+            <!-- CARD 1: VIEWS GENERATED (+625%) -->
+            <div class="metric-card">
+                <div class="metric-card-header">
+                    <div class="metric-card-titles">
+                        <h3 class="metric-title">Views Generated</h3>
+                        <span class="metric-sub">Monthly Average</span>
+                    </div>
+                    <div class="metric-badge-group">
+                        <span class="metric-lift" data-type="percent" data-target="625" data-prefix="+">+0%</span>
+                    </div>
+                </div>
+
+                <div class="bar-chart-stage">
+                    <!-- Before Bar -->
+                    <div class="bar-column before">
+                        <span class="bar-value" data-type="k-val" data-target="12">0K</span>
+                        <div class="bar-pill" data-target-height="25%"></div>
+                        <span class="bar-label">Before</span>
+                    </div>
+
+                    <!-- After Bar -->
+                    <div class="bar-column after">
+                        <span class="bar-value" data-type="k-val" data-target="87">0K</span>
+                        <div class="bar-pill" data-target-height="95%"></div>
+                        <span class="bar-label">After {{ admin_name }}</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CARD 2: WATCH TIME (+188%) -->
+            <div class="metric-card">
+                <div class="metric-card-header">
+                    <div class="metric-card-titles">
+                        <h3 class="metric-title">Watch Time</h3>
+                        <span class="metric-sub">Avg Per Video</span>
+                    </div>
+                    <div class="metric-badge-group">
+                        <span class="metric-lift" data-type="percent" data-target="188" data-prefix="+">+0%</span>
+                    </div>
+                </div>
+
+                <div class="bar-chart-stage">
+                    <!-- Before Bar (0:45 = 45s) -->
+                    <div class="bar-column before">
+                        <span class="bar-value" data-type="time-val" data-seconds="45">0:00</span>
+                        <div class="bar-pill" data-target-height="28%"></div>
+                        <span class="bar-label">Before</span>
+                    </div>
+
+                    <!-- After Bar (2:10 = 130s) -->
+                    <div class="bar-column after">
+                        <span class="bar-value" data-type="time-val" data-seconds="130">0:00</span>
+                        <div class="bar-pill" data-target-height="92%"></div>
+                        <span class="bar-label">After {{ admin_name }}</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CARD 3: ENGAGEMENT RATE (+252%) with LIVE PILL -->
+            <div class="metric-card">
+                <div class="metric-card-header">
+                    <div class="metric-card-titles">
+                        <h3 class="metric-title">Engagement Rate</h3>
+                        <span class="metric-sub">Likes + Comments</span>
+                    </div>
+                    <div class="metric-badge-group">
+                        <div class="metric-live-pill">
+                            <span class="metric-live-dot"></span> 00:24:27
+                        </div>
+                        <span class="metric-lift" data-type="percent" data-target="252" data-prefix="+">+0%</span>
+                    </div>
+                </div>
+
+                <div class="bar-chart-stage">
+                    <!-- Before Bar (2.1%) -->
+                    <div class="bar-column before">
+                        <span class="bar-value" data-type="decimal-val" data-target="2.1">0.0%</span>
+                        <div class="bar-pill" data-target-height="24%"></div>
+                        <span class="bar-label">Before</span>
+                    </div>
+
+                    <!-- After Bar (7.4%) -->
+                    <div class="bar-column after">
+                        <span class="bar-value" data-type="decimal-val" data-target="7.4">0.0%</span>
+                        <div class="bar-pill" data-target-height="90%"></div>
+                        <span class="bar-label">After {{ admin_name }}</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CARD 4: CLIENT RETENTION (94%) -->
+            <div class="metric-card">
+                <div class="metric-card-header">
+                    <div class="metric-card-titles">
+                        <h3 class="metric-title">Client Retention</h3>
+                        <span class="metric-sub">Stay 3+ Months</span>
+                    </div>
+                    <div class="metric-badge-group">
+                        <span class="metric-lift" data-type="percent" data-target="94" data-prefix="">0%</span>
+                    </div>
+                </div>
+
+                <div class="retention-bar-stage">
+                    <div class="retention-track">
+                        <div class="retention-fill" data-target-width="94%"></div>
+                    </div>
+                    <div class="retention-labels">
+                        <span class="retention-label-left">Clients</span>
+                        <span class="retention-label-right" id="retention-label-num">0%</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <p class="metrics-footer-caption">
+            Average performance lift across {{ admin_name }} Sarkar clients & creators
+        </p>
+    </section>
+
+    <!-- ========================================================= -->
+    <!-- --- STYLISH EXPANDED ABOUT SECTION AT THE END --- -->
+    <!-- ========================================================= -->
+    <section class="content-section" id="about-section">
+        <div class="about-wrap">
+            
+            <!-- Main Grid: Photo with Rotating Background on Left, Profile Info on Right (Inspired by Reference) -->
+            <div class="about-main-grid">
+                
+                <!-- Left Side: Resized Photo Card with Rotating Animated Background Rect Frame -->
+                <div class="about-photo-wrapper">
+                    <!-- Rotating Rectangular Frame in Background -->
+                    <div class="rotating-rect-outer">
+                        <div class="rotating-rect-frame"></div>
+                    </div>
+                    <div class="rotating-rect-glow"></div>
+
+                    <!-- The Stylish Profile Card in Front -->
+                    <div class="about-profile-card">
+                        <div class="card-inner-studio">
+                            <img src="/static/asserts/side_photo.jpg" alt="{{ admin_name }} Sarkar" class="card-portrait-img">
+                        </div>
+
+                        <!-- Bottom Status Pill Bar (matching reference) -->
+                        <div class="card-status-bar">
+                            <div class="status-indicator">
+                                <span class="status-pulse-dot"></span>
+                                <span>OPEN TO OPPORTUNITIES</span>
+                            </div>
+                            <span class="status-year">2026</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Side: Profile Info & Specs (Bulky 4 pillars removed) -->
+                <div class="about-info-col">
+                    <span class="profile-system-tag">// CREATOR PROFILE</span>
+                    <h2 class="profile-greeting">Hello, I'm <span class="gradient-name">{{ admin_name }} Sarkar</span></h2>
+                    
+                    <p class="profile-bio-text">
+                        A high-retention video editor & creative architect dedicated to crafting clean, functional, and viral 9:16 vertical reels. Specializing in high-velocity hook architecture, tactile multi-track sound engineering, and algorithmic watch-time psychology.
+                    </p>
+
+                    <p class="profile-bio-sub">
+                        From venture founders and educators to high-growth DTC creators, I turn raw footage into cinematic short-form assets that convert passive scrollers into hyper-engaged communities.
+                    </p>
+
+                    <!-- 3 Sleek Spec Cards (matching reference layout) -->
+                    <div class="profile-specs-row">
+                        <div class="spec-card">
+                            <h4 class="spec-title">9:16 Retention</h4>
+                            <span class="spec-sub">VIRAL ARCHITECTURE</span>
+                        </div>
+                        <div class="spec-card">
+                            <h4 class="spec-title">Premiere & AE</h4>
+                            <span class="spec-sub">CORE PRODUCTION</span>
+                        </div>
+                        <div class="spec-card">
+                            <h4 class="spec-title">50M+ Views</h4>
+                            <span class="spec-sub">AUDIENCE IMPACT</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Software Weaponry Suite (Animated Continuous Marquee like the videos) -->
+            <div class="software-suite-section">
+                <div class="software-header">
+                    <div class="software-title-wrap">
+                        <h3><span>🛠️</span> Editor Weaponry & Production Suite</h3>
+                        <p>Industry-grade NLEs, motion VFX compositing, and audio color suites mastered for vertical storytelling (Hover to pause)</p>
+                    </div>
+                    <span class="software-pill" style="border-color: var(--accent); color: var(--accent);">Active Marquee • Hover to Pause</span>
+                </div>
+
+                <!-- Gliding continuous marquee rail like the videos -->
+                <div class="software-marquee-viewport">
+                    <div class="software-marquee-track" id="software-marquee-track">
+                        
+                        <!-- Track Set 1 -->
+                        <div class="software-card premiere">
+                            <div class="software-icon-wrap pr-icon">Pr</div>
+                            <div>
+                                <h4 class="software-name">Adobe Premiere Pro</h4>
+                                <span class="software-role">Timeline Assembly</span>
+                            </div>
+                            <p class="software-desc">Multicam synchronization, ultra-tight retention cuts, J/L audio transitions, proxy workflows, and master sequence structure.</p>
+                            <span class="software-tag">Primary NLE</span>
+                        </div>
+
+                        <div class="software-card filmora">
+                            <div class="software-icon-wrap filmora-icon">
+                                <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+                                    <path d="M4 6.5C4 5.12 5.12 4 6.5 4H10l-2 5H4V6.5z" fill="#00E5FF"/>
+                                    <path d="M8 9l2-5h7.5C18.88 4 20 5.12 20 6.5V9H8z" fill="#00B0FF"/>
+                                    <path d="M4 11h16v6.5c0 1.38-1.12 2.5-2.5 2.5H6.5C5.12 20 4 18.88 4 17.5V11z" fill="#FF5E62"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="software-name">Wondershare Filmora</h4>
+                                <span class="software-role">Dynamic Speed FX</span>
+                            </div>
+                            <p class="software-desc">Rapid ideation, snappy optical flow speed ramping, trending sticker motion tracking, and high-velocity creator edits.</p>
+                            <span class="software-tag">Velocity Engine</span>
+                        </div>
+
+                        <div class="software-card aftereffects">
+                            <div class="software-icon-wrap ae-icon">Ae</div>
+                            <div>
+                                <h4 class="software-name">Adobe After Effects</h4>
+                                <span class="software-role">Motion VFX & 3D</span>
+                            </div>
+                            <p class="software-desc">3D camera tracking, custom kinetic typography choreography, glowing HUD callouts, rotoscoping, and seamless visual hooks.</p>
+                            <span class="software-tag">VFX & Motion</span>
+                        </div>
+
+                        <div class="software-card davinci">
+                            <div class="software-icon-wrap davinci-icon">
+                                <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+                                    <circle cx="12" cy="7" r="3.5" fill="#FF3366"/>
+                                    <circle cx="7" cy="15" r="3.5" fill="#FFBB00"/>
+                                    <circle cx="17" cy="15" r="3.5" fill="#00D2FF"/>
+                                    <circle cx="12" cy="12" r="2.2" fill="#FFFFFF"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="software-name">DaVinci Resolve</h4>
+                                <span class="software-role">Color Science & Audio</span>
+                            </div>
+                            <p class="software-desc">Cinema-grade node grading, natural skin-tone isolation, Rec.709 mobile optimization, and multi-track Fairlight acoustics.</p>
+                            <span class="software-tag">Color & Sound</span>
+                        </div>
+
+                        <div class="software-card capcut">
+                            <div class="software-icon-wrap capcut-icon">
+                                <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M5.5 4L12 10.5 18.5 4 21 6.5 14.5 13 21 19.5 18.5 22 12 15.5 5.5 22 3 19.5 9.5 13 3 6.5 5.5 4z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="software-name">CapCut Pro</h4>
+                                <span class="software-role">Viral Pacing & Captions</span>
+                            </div>
+                            <p class="software-desc">Algorithmic audio choreography, dynamic auto-captions with custom brand styling, sound-effect matching, and mobile viral formatting.</p>
+                            <span class="software-tag">Algorithm Sync</span>
+                        </div>
+
+                        <div class="software-card audition">
+                            <div class="software-icon-wrap au-icon">Au</div>
+                            <div>
+                                <h4 class="software-name">Adobe Audition</h4>
+                                <span class="software-role">Sound Polish & Foley</span>
+                            </div>
+                            <p class="software-desc">Spectral frequency denoising, multiband compression, textured Foley layers, and spatial acoustic immersion.</p>
+                            <span class="software-tag">Acoustics</span>
+                        </div>
+
+                        <div class="software-card blender">
+                            <div class="software-icon-wrap blender-icon">
+                                <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor">
+                                    <circle cx="12" cy="12" r="4"/>
+                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="software-name">Blender 3D</h4>
+                                <span class="software-role">3D Motion & Assets</span>
+                            </div>
+                            <p class="software-desc">3D isometric elements, custom viewport camera moves, realistic object modeling, and cinematic short-form visual assets.</p>
+                            <span class="software-tag">3D Motion</span>
+                        </div>
+
+                        <!-- Track Set 2 (Duplicate for Seamless Infinite Marquee Loop) -->
+                        <div class="software-card premiere">
+                            <div class="software-icon-wrap pr-icon">Pr</div>
+                            <div>
+                                <h4 class="software-name">Adobe Premiere Pro</h4>
+                                <span class="software-role">Timeline Assembly</span>
+                            </div>
+                            <p class="software-desc">Multicam synchronization, ultra-tight retention cuts, J/L audio transitions, proxy workflows, and master sequence structure.</p>
+                            <span class="software-tag">Primary NLE</span>
+                        </div>
+
+                        <div class="software-card filmora">
+                            <div class="software-icon-wrap filmora-icon">
+                                <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+                                    <path d="M4 6.5C4 5.12 5.12 4 6.5 4H10l-2 5H4V6.5z" fill="#00E5FF"/>
+                                    <path d="M8 9l2-5h7.5C18.88 4 20 5.12 20 6.5V9H8z" fill="#00B0FF"/>
+                                    <path d="M4 11h16v6.5c0 1.38-1.12 2.5-2.5 2.5H6.5C5.12 20 4 18.88 4 17.5V11z" fill="#FF5E62"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="software-name">Wondershare Filmora</h4>
+                                <span class="software-role">Dynamic Speed FX</span>
+                            </div>
+                            <p class="software-desc">Rapid ideation, snappy optical flow speed ramping, trending sticker motion tracking, and high-velocity creator edits.</p>
+                            <span class="software-tag">Velocity Engine</span>
+                        </div>
+
+                        <div class="software-card aftereffects">
+                            <div class="software-icon-wrap ae-icon">Ae</div>
+                            <div>
+                                <h4 class="software-name">Adobe After Effects</h4>
+                                <span class="software-role">Motion VFX & 3D</span>
+                            </div>
+                            <p class="software-desc">3D camera tracking, custom kinetic typography choreography, glowing HUD callouts, rotoscoping, and seamless visual hooks.</p>
+                            <span class="software-tag">VFX & Motion</span>
+                        </div>
+
+                        <div class="software-card davinci">
+                            <div class="software-icon-wrap davinci-icon">
+                                <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+                                    <circle cx="12" cy="7" r="3.5" fill="#FF3366"/>
+                                    <circle cx="7" cy="15" r="3.5" fill="#FFBB00"/>
+                                    <circle cx="17" cy="15" r="3.5" fill="#00D2FF"/>
+                                    <circle cx="12" cy="12" r="2.2" fill="#FFFFFF"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="software-name">DaVinci Resolve</h4>
+                                <span class="software-role">Color Science & Audio</span>
+                            </div>
+                            <p class="software-desc">Cinema-grade node grading, natural skin-tone isolation, Rec.709 mobile optimization, and multi-track Fairlight acoustics.</p>
+                            <span class="software-tag">Color & Sound</span>
+                        </div>
+
+                        <div class="software-card capcut">
+                            <div class="software-icon-wrap capcut-icon">
+                                <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M5.5 4L12 10.5 18.5 4 21 6.5 14.5 13 21 19.5 18.5 22 12 15.5 5.5 22 3 19.5 9.5 13 3 6.5 5.5 4z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="software-name">CapCut Pro</h4>
+                                <span class="software-role">Viral Pacing & Captions</span>
+                            </div>
+                            <p class="software-desc">Algorithmic audio choreography, dynamic auto-captions with custom brand styling, sound-effect matching, and mobile viral formatting.</p>
+                            <span class="software-tag">Algorithm Sync</span>
+                        </div>
+
+                        <div class="software-card audition">
+                            <div class="software-icon-wrap au-icon">Au</div>
+                            <div>
+                                <h4 class="software-name">Adobe Audition</h4>
+                                <span class="software-role">Sound Polish & Foley</span>
+                            </div>
+                            <p class="software-desc">Spectral frequency denoising, multiband compression, textured Foley layers, and spatial acoustic immersion.</p>
+                            <span class="software-tag">Acoustics</span>
+                        </div>
+
+                        <div class="software-card blender">
+                            <div class="software-icon-wrap blender-icon">
+                                <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor">
+                                    <circle cx="12" cy="12" r="4"/>
+                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="software-name">Blender 3D</h4>
+                                <span class="software-role">3D Motion & Assets</span>
+                            </div>
+                            <p class="software-desc">3D isometric elements, custom viewport camera moves, realistic object modeling, and cinematic short-form visual assets.</p>
+                            <span class="software-tag">3D Motion</span>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ========================================================= -->
+    <!-- --- AUTO MAIL & GOOGLE LOGIN COLLABORATION SECTION --- -->
+    <!-- --- CATCHY HIGH-CONTRAST STYLISH WHITE THEME --- -->
+    <!-- ========================================================= -->
+    <section id="contact">
+        <div class="mail-section-wrap">
+            
+            <div class="section-header" style="text-align: center; align-items: center;">
+                <span class="section-eyebrow">Direct Collaboration Studio</span>
+                <h2 class="section-title">Start A <span>Project Brief</span></h2>
+                <p class="section-desc" style="text-align: center; max-width: 680px; margin: 0 auto;">Draft your vision, let our Groq AI enhance your notes into an executive proposal, and send directly to {{ admin_name }}'s verified inbox.</p>
+            </div>
+
+            <!-- Identity Bar: Displaying Admin specs & Current Sender in White Card Aesthetic -->
+            <div class="mail-header-banner">
+                
+                <!-- Admin Card -->
+                <div class="identity-card admin-card">
+                    <div class="identity-info">
+                        <div class="identity-avatar" style="background: linear-gradient(135deg, var(--accent), #ff7744); color: #fff;">AS</div>
+                        <div class="identity-text">
+                            <h4>{{ admin_name }}</h4>
+                            <p>{{ admin_email }}</p>
+                        </div>
+                    </div>
+                    <span class="identity-tag admin-tag">Lead Editor / Admin</span>
+                </div>
+
+                <!-- User Identity Card -->
+                <div class="identity-card user-card" id="user-identity-card">
+                    <div class="identity-info">
+                        {% if current_user and current_user.picture %}
+                            <img src="{{ current_user.picture }}" alt="User Avatar" class="identity-avatar">
+                        {% else %}
+                            <div class="identity-avatar" id="user-avatar-initial">{{ current_user.name[0] if current_user else "?" }}</div>
+                        {% endif %}
+                        <div class="identity-text">
+                            <h4 id="user-display-name">{{ current_user.name if current_user else "Client Guest" }}</h4>
+                            <p id="user-display-email">{{ current_user.email if current_user else "Sign in when sending" }}</p>
+                        </div>
+                    </div>
+                    <span class="identity-tag user-tag" id="user-auth-badge">
+                        {{ "✓ Google Verified" if current_user else "Guest Mode" }}
+                    </span>
+                </div>
+
+            </div>
+
+            <!-- Collaborative Mail Form & AI Studio in White Card Aesthetic -->
+            <div class="mail-studio-grid">
+                
+                <!-- Left Column: Input Form -->
+                <div>
+                    <h3 class="form-col-title">
+                        <span>1.</span> Project Brief Details
+                    </h3>
+
+                    <div class="dual-inputs">
+                        <div class="mail-input-group">
+                            <label for="form-user-name">Your Name</label>
+                            <input type="text" id="form-user-name" placeholder="e.g. Alex Rivera" value="{{ current_user.name if current_user else '' }}" required>
+                        </div>
+                        <div class="mail-input-group">
+                            <label for="form-user-email">Your Email</label>
+                            <input type="email" id="form-user-email" placeholder="e.g. alex@brand.com" value="{{ current_user.email if current_user else '' }}" required>
+                        </div>
+                    </div>
+
+                    <div class="dual-inputs">
+                        <div class="mail-input-group">
+                            <label>Admin Name</label>
+                            <input type="text" id="form-admin-name" value="{{ admin_name }}" readonly>
+                        </div>
+                        <div class="mail-input-group">
+                            <label>Admin Email</label>
+                            <input type="text" id="form-admin-email" value="{{ admin_email }}" readonly>
+                        </div>
+                    </div>
+
+                    <div class="mail-input-group">
+                        <label for="form-subject">Subject / Project Scope</label>
+                        <input type="text" id="form-subject" placeholder="e.g. 8 Tech Reels per month for SaaS Product Launch" required>
+                    </div>
+
+                    <div class="mail-input-group">
+                        <label for="form-desc">Project Description & Needs</label>
+                        <textarea id="form-desc" rows="4" placeholder="Tell {{ admin_name }} about your raw footage, target audience, preferred style, turnaround speed, and requirements..." required></textarea>
+                    </div>
+
+                    <div class="mail-input-group">
+                        <label for="form-ref-link">Reference Link (Inspiration / Footage)</label>
+                        <input type="url" id="form-ref-link" placeholder="e.g. https://instagram.com/reel/... or Google Drive folder">
+                    </div>
+
+                    <!-- AI Enhance Button -->
+                    <button type="button" class="btn-ai-enhance" id="ai-enhance-btn" onclick="enhanceMailWithAI()">
+                        <span>✨ AI Enhance Email</span>
+                    </button>
+
+                    <!-- Send Mail Button (appears after AI Enhance or directly ready) -->
+                    <button type="button" class="btn-send-mail" id="send-mail-btn" onclick="handleSendMailClick()">
+                        <span>🚀 Send Email to {{ admin_name }}</span>
+                    </button>
+                </div>
+
+                <!-- Right Column: AI Enhanced Preview -->
+                <div class="ai-preview-column">
+                    <div>
+                        <div class="ai-preview-header">
+                            <h3 class="form-col-title" style="margin: 0;">
+                                <span>2.</span> Enhanced Proposal Preview
+                            </h3>
+                            <span class="ai-engine-tag" id="ai-status-tag">Groq AI Ready</span>
+                        </div>
+
+                        <div id="ai-preview-container">
+                            <div class="ai-placeholder-msg" id="ai-empty-placeholder">
+                                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+                                <p style="font-size: 0.95rem; font-weight: 700; color: #0f172a;">No enhanced draft yet</p>
+                                <p style="font-size: 0.82rem; max-width: 280px; line-height: 1.4; color: #64748b;">Fill in your scope and click <strong>"AI Enhance Email"</strong> to turn your rough notes into an executive-ready proposal.</p>
+                            </div>
+
+                            <textarea id="enhanced-body-textarea" class="enhanced-textarea" style="display: none;" placeholder="AI enhanced email will appear here..."></textarea>
+                        </div>
+                    </div>
+
+                    <div class="ai-meta-row">
+                        <span>Direct to: {{ admin_email }}</span>
+                        <span id="ai-model-label">Engine: Groq AI (Qwen)</span>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ========================================================= -->
+    <!-- --- DEDICATED SOCIAL CONNECT DOWN BAR (AFTER MAIL) --- -->
+    <!-- ========================================================= -->
+    <section id="social-hub" class="social-down-bar-section">
+        <div class="down-bar-container">
+            
+            <div class="down-bar-brand-col">
+                <div class="status-pill-live">
+                    <span class="status-dot-pulse"></span>
+                    <span>Available for Monthly Retainers & Custom Edits</span>
+                </div>
+                <h3 class="down-bar-title">Connect with {{ admin_name }} Sarkar</h3>
+                <p class="down-bar-sub">Follow creative breakdowns, see daily 9:16 vertical drops, or connect professionally across official creator channels.</p>
+            </div>
+
+            <div class="down-bar-actions-col">
+                <div class="down-bar-social-links">
+                    <!-- YouTube Card -->
+                    <a href="{{ admin_youtube }}" target="_blank" rel="noopener noreferrer" class="social-channel-card yt-card" title="YouTube Channel">
+                        <div class="social-card-icon-wrap yt">
+                            <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                        </div>
+                        <div class="social-card-info">
+                            <span class="social-card-name">YouTube</span>
+                            <span class="social-card-desc">Watch Breakdowns</span>
+                        </div>
+                        <span class="social-card-arrow">↗</span>
+                    </a>
+
+                    <!-- Instagram Card -->
+                    <a href="{{ admin_instagram }}" target="_blank" rel="noopener noreferrer" class="social-channel-card ig-card" title="Instagram Profile">
+                        <div class="social-card-icon-wrap ig">
+                            <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                        </div>
+                        <div class="social-card-info">
+                            <span class="social-card-name">Instagram</span>
+                            <span class="social-card-desc">Daily 9:16 Drops</span>
+                        </div>
+                        <span class="social-card-arrow">↗</span>
+                    </a>
+
+                    <!-- LinkedIn Card -->
+                    <a href="{{ admin_linkedin }}" target="_blank" rel="noopener noreferrer" class="social-channel-card li-card" title="LinkedIn Profile">
+                        <div class="social-card-icon-wrap li">
+                            <svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                        </div>
+                        <div class="social-card-info">
+                            <span class="social-card-name">LinkedIn</span>
+                            <span class="social-card-desc">Network & Retainers</span>
+                        </div>
+                        <span class="social-card-arrow">↗</span>
+                    </a>
+                </div>
+
+                <a href="#scroll-sequence" class="down-bar-top-btn" title="Back to top">
+                    <span>Top</span>
+                    <span>↑</span>
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ========================================================= -->
+    <!-- --- GOOGLE LOGIN POPUP MODAL --- -->
+    <!-- ========================================================= -->
+    <div class="modal-backdrop" id="google-login-modal">
+        <div class="modal-card">
+            <button class="modal-close-btn" onclick="closeGoogleModal()">×</button>
+            
+            <div class="modal-icon-badge">
+                <svg width="32" height="32" viewBox="0 0 24 24"><path fill="#EA4335" d="M12 5c1.56 0 2.96.54 4.07 1.58l3.05-3.05C17.27 1.83 14.82 1 12 1 7.42 1 3.51 3.63 1.62 7.47l3.77 2.93C6.34 7.23 8.94 5 12 5z"/><path fill="#4285F4" d="M23.5 12.28c0-.79-.07-1.54-.19-2.28H12v4.51h6.47c-.28 1.48-1.12 2.74-2.38 3.58l3.7 2.87c2.16-1.99 3.41-4.92 3.41-8.68z"/><path fill="#FBBC05" d="M5.39 14.6c-.24-.72-.39-1.49-.39-2.3s.15-1.58.39-2.3L1.62 7.07C.59 9.13 0 11.49 0 14s.59 4.87 1.62 6.93l3.77-2.93z"/><path fill="#34A853" d="M12 23c3.24 0 5.96-1.07 7.95-2.92l-3.7-2.87c-1.08.72-2.45 1.16-4.25 1.16-3.06 0-5.66-2.23-6.61-5.4L1.62 15.93C3.51 19.77 7.42 23 12 23z"/></svg>
+            </div>
+
+            <h3>Connect with Google</h3>
+            <p>Please authenticate with your Google account to dispatch your message directly to {{ admin_name }} Sarkar's inbox.</p>
+
+            <!-- Google GIS Button Container -->
+            <div class="google-auth-container" id="g-login-btn-container"></div>
+
+            <!-- Quick Demo Login Option -->
+            <div class="dev-login-fallback">
+                <p>Testing in development or local preview?</p>
+                <button class="btn-dev-quick-login" onclick="devQuickLogin()">
+                    ⚡ Quick Test Sign-In (Demo User)
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification Element -->
+    <div class="toast-notify" id="toast-notify">
+        <span style="font-size: 1.5rem;" id="toast-icon">✅</span>
+        <div>
+            <h4 style="font-size: 0.95rem; font-weight: 700;" id="toast-title">Message Sent!</h4>
+            <p style="font-size: 0.8rem; color: #aaa;" id="toast-msg">Your proposal has been dispatched.</p>
+        </div>
+    </div>
+
+    <!-- Footer with Clean Copyright & Admin Link (No duplicate social links) -->
+    <footer>
+        <div class="footer-left">
+            <span style="color: #fff; font-weight: 700;">{{ admin_name }} Sarkar</span>
+            <span>Short-form vertical reel production & viral retention editing.</span>
+        </div>
+
+        <div class="footer-links">
+            <span style="color: var(--text-muted); font-size: 0.82rem;">© 2026 {{ admin_name }} Sarkar. All rights reserved.</span>
+            <a href="/admin">Admin Studio</a>
+        </div>
+    </footer>
+
+    <!-- Template Data Payload -->
+    <script id="current-user-data" type="application/json">
+        {{ current_user | tojson if current_user else 'null' }}
+    </script>
+    <div id="app-config-data" data-client-id="{{ google_client_id }}" style="display:none;"></div>
+
+    <!-- Scripts -->
+    <script>
+        let currentUser = null;
+        try {
+            const rawUser = document.getElementById('current-user-data')?.textContent;
+            currentUser = rawUser ? JSON.parse(rawUser) : null;
+        } catch (e) {
+            currentUser = null;
+        }
+        const googleClientId = document.getElementById('app-config-data')?.getAttribute('data-client-id') || "";
+        let pendingSendAfterLogin = false;
+
+        document.addEventListener("DOMContentLoaded", () => {
+            
+            // ==========================================
+            // 1. HERO FRAME SCRUBBING
+            // ==========================================
+            const heroImg = document.getElementById('hero-img');
+            const scrollSequence = document.getElementById('scroll-sequence');
+            const heroText = document.getElementById('hero-text');
+            const heroTags = document.getElementById('hero-tags');
+
+            const frameCount = 18;
+            const currentFrame = index => `/static/photos/ezgif-frame-${(index + 1).toString().padStart(3, '0')}.jpg`;
+            const images = [];
+            const imageSequence = { frame: 0 };
+
+            for (let i = 0; i < frameCount; i++) {
+                const img = new Image();
+                img.src = currentFrame(i);
+                images.push(img);
+            }
+
+            window.addEventListener('scroll', () => {
+                if (!scrollSequence || !heroImg) return;
+                const sequenceRect = scrollSequence.getBoundingClientRect();
+                const scrollableDistance = scrollSequence.scrollHeight - window.innerHeight;
+                const scrolled = Math.max(0, -sequenceRect.top);
+                
+                let progress = scrolled / scrollableDistance;
+                if (progress < 0) progress = 0;
+                if (progress > 1) progress = 1;
+
+                const frameIndex = Math.min(
+                    frameCount - 1,
+                    Math.floor(progress * frameCount)
+                );
+                
+                if (imageSequence.frame !== frameIndex && images[frameIndex]) {
+                    imageSequence.frame = frameIndex;
+                    heroImg.src = images[frameIndex].src;
+                }
+
+                if (heroText && heroTags) {
+                    heroText.style.opacity = Math.max(0, 1 - (progress * 1.5));
+                    heroTags.style.opacity = Math.max(0, 1 - (progress * 2));
+                    heroText.style.transform = `translateY(${progress * -50}px)`;
+                }
+            });
+
+            // ==========================================
+            // 2. CONTINUOUS MARQUEE VIDEO STRIP (RIGHT TO LEFT)
+            // ==========================================
+            initMarqueeReels();
+
+            // ==========================================
+            // 3. BAR GRAPH & NUMERICAL ANIMATIONS
+            // ==========================================
+            initMetricAnimations();
+
+            // ==========================================
+            // 4. GOOGLE GIS INITIALIZATION
+            // ==========================================
+            initGoogleGIS();
+        });
+
+        // ========================================================
+        // MARQUEE REEL STRIP LOGIC (CONTINUOUS SMOOTH MOVEMENT)
+        // ========================================================
+        let marqueeOffset = 0;
+        let marqueeSpeed = 1.0; // pixels per frame
+        let isMarqueeMoving = true;
+        let focusedCard = null;
+        let marqueeAnimFrame = null;
+
+        function initMarqueeReels() {
+            const track = document.getElementById('marquee-track');
+            const cards = document.querySelectorAll('.marquee-reel-card');
+            if (!track || cards.length === 0) return;
+
+            // Start playing all videos (muted) so all frames are live
+            cards.forEach(card => {
+                const vid = card.querySelector('video');
+                if (vid) {
+                    vid.muted = true;
+                    vid.play().catch(e => console.log("Autoplay note:", e));
+                }
+
+                // Click interaction on card
+                card.addEventListener('click', (e) => {
+                    handleReelCardClick(card);
+                });
+            });
+
+            // Marquee animation loop
+            function animateMarquee() {
+                if (isMarqueeMoving && track) {
+                    marqueeOffset -= marqueeSpeed;
+
+                    // Calculate half-width for seamless infinite reset
+                    const halfWidth = track.scrollWidth / 2;
+                    if (Math.abs(marqueeOffset) >= halfWidth) {
+                        marqueeOffset = 0;
+                    }
+                    track.style.transform = `translateX(${marqueeOffset}px)`;
+                }
+                marqueeAnimFrame = requestAnimationFrame(animateMarquee);
+            }
+
+            marqueeAnimFrame = requestAnimationFrame(animateMarquee);
+        }
+
+        function handleReelCardClick(card) {
+            const vid = card.querySelector('video');
+            const soundBadge = card.querySelector('.reel-sound-badge');
+
+            // If clicking the already focused card, toggle resume
+            if (focusedCard === card) {
+                // Resume movement
+                card.classList.remove('is-playing-focused');
+                if (vid) {
+                    vid.muted = true;
+                }
+                if (soundBadge) soundBadge.textContent = '🔊';
+                focusedCard = null;
+                isMarqueeMoving = true;
+                updateMotionStatus(true);
+            } else {
+                // Remove focus from any previous card
+                if (focusedCard) {
+                    focusedCard.classList.remove('is-playing-focused');
+                    const prevVid = focusedCard.querySelector('video');
+                    if (prevVid) prevVid.muted = true;
+                    const prevBadge = focusedCard.querySelector('.reel-sound-badge');
+                    if (prevBadge) prevBadge.textContent = '🔊';
+                }
+
+                // Focus new card & PAUSE movement!
+                card.classList.add('is-playing-focused');
+                focusedCard = card;
+                isMarqueeMoving = false;
+                updateMotionStatus(false);
+
+                if (vid) {
+                    vid.muted = false; // unmute so user can hear audio!
+                    vid.currentTime = 0;
+                    vid.play();
+
+                    // When video finishes, automatically resume marquee movement!
+                    vid.onended = () => {
+                        card.classList.remove('is-playing-focused');
+                        vid.muted = true;
+                        if (soundBadge) soundBadge.textContent = '🔊';
+                        focusedCard = null;
+                        isMarqueeMoving = true;
+                        updateMotionStatus(true);
+                    };
+                }
+
+                if (soundBadge) soundBadge.textContent = '🔈 Live Audio';
+            }
+        }
+
+        function toggleMarqueeMotion() {
+            isMarqueeMoving = !isMarqueeMoving;
+            updateMotionStatus(isMarqueeMoving);
+        }
+
+        function updateMotionStatus(active) {
+            const statusLabel = document.getElementById('marquee-status-label');
+            const toggleIcon = document.getElementById('toggle-motion-icon');
+            const toggleText = document.getElementById('toggle-motion-text');
+
+            if (active) {
+                if (statusLabel) statusLabel.textContent = "Continuous Motion: Active";
+                if (toggleIcon) toggleIcon.textContent = "⏸";
+                if (toggleText) toggleText.textContent = "Pause Scroll";
+            } else {
+                if (statusLabel) statusLabel.textContent = "Motion: Paused on Selection";
+                if (toggleIcon) toggleIcon.textContent = "▶";
+                if (toggleText) toggleText.textContent = "Resume Scroll";
+            }
+        }
+
+        // ========================================================
+        // ENHANCED BAR GRAPH & NUMBER COUNTING ANIMATIONS
+        // ========================================================
+        function initMetricAnimations() {
+            const metricsSection = document.getElementById('metrics');
+            let metricsHasAnimated = false;
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && !metricsHasAnimated) {
+                        metricsHasAnimated = true;
+                        runMetricAnimations();
+                    }
+                });
+            }, { threshold: 0.25 });
+
+            if (metricsSection) {
+                observer.observe(metricsSection);
+            }
+        }
+
+        function runMetricAnimations() {
+            // 1. Grow Vertical Bar Heights
+            document.querySelectorAll('.bar-pill').forEach(pill => {
+                const targetHeight = pill.getAttribute('data-target-height');
+                if (targetHeight) {
+                    setTimeout(() => {
+                        pill.style.height = targetHeight;
+                    }, 100);
+                }
+            });
+
+            // 2. Expand Retention Horizontal Bar & Number
+            const retentionFill = document.querySelector('.retention-fill');
+            const retentionLabel = document.getElementById('retention-label-num');
+            if (retentionFill) {
+                const targetWidth = retentionFill.getAttribute('data-target-width');
+                setTimeout(() => {
+                    retentionFill.style.width = targetWidth;
+                }, 100);
+            }
+
+            if (retentionLabel) {
+                animateNumber(retentionLabel, 0, 94, 1500, '', '%');
+            }
+
+            // 3. Count Up Top Percentage Badges
+            document.querySelectorAll('.metric-lift').forEach(counter => {
+                const target = parseInt(counter.getAttribute('data-target'), 10);
+                const prefix = counter.getAttribute('data-prefix') || '';
+                animateNumber(counter, 0, target, 1500, prefix, '%');
+            });
+
+            // 4. Count Up Individual Bar Values (12K, 87K, 0:45, 2.1%, etc.)
+            document.querySelectorAll('.bar-value').forEach(valElem => {
+                const type = valElem.getAttribute('data-type');
+
+                if (type === 'k-val') {
+                    const target = parseInt(valElem.getAttribute('data-target'), 10);
+                    animateNumber(valElem, 0, target, 1400, '', 'K');
+                } else if (type === 'decimal-val') {
+                    const target = parseFloat(valElem.getAttribute('data-target'));
+                    animateDecimal(valElem, 0.0, target, 1400, '%');
+                } else if (type === 'time-val') {
+                    const seconds = parseInt(valElem.getAttribute('data-seconds'), 10);
+                    animateTime(valElem, seconds, 1500);
+                }
+            });
+        }
+
+        // Animate standard integer
+        function animateNumber(element, start, end, duration, prefix = '', suffix = '') {
+            const startTime = performance.now();
+            function update(now) {
+                const elapsed = now - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                // easeOutExpo
+                const ease = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+                const current = Math.floor(start + (end - start) * ease);
+                element.textContent = `${prefix}${current}${suffix}`;
+                if (progress < 1) {
+                    requestAnimationFrame(update);
+                } else {
+                    element.textContent = `${prefix}${end}${suffix}`;
+                }
+            }
+            requestAnimationFrame(update);
+        }
+
+        // Animate floating point decimal (e.g. 2.1%, 7.4%)
+        function animateDecimal(element, start, end, duration, suffix = '') {
+            const startTime = performance.now();
+            function update(now) {
+                const elapsed = now - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                const ease = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+                const current = (start + (end - start) * ease).toFixed(1);
+                element.textContent = `${current}${suffix}`;
+                if (progress < 1) {
+                    requestAnimationFrame(update);
+                } else {
+                    element.textContent = `${end.toFixed(1)}${suffix}`;
+                }
+            }
+            requestAnimationFrame(update);
+        }
+
+        // Animate MM:SS time values
+        function animateTime(element, totalSeconds, duration) {
+            const startTime = performance.now();
+            function formatTime(s) {
+                const mins = Math.floor(s / 60);
+                const secs = s % 60;
+                return `${mins}:${secs.toString().padStart(2, '0')}`;
+            }
+
+            function update(now) {
+                const elapsed = now - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                const ease = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+                const currentSecs = Math.floor(totalSeconds * ease);
+                element.textContent = formatTime(currentSecs);
+                if (progress < 1) {
+                    requestAnimationFrame(update);
+                } else {
+                    element.textContent = formatTime(totalSeconds);
+                }
+            }
+            requestAnimationFrame(update);
+        }
+
+        // ========================================================
+        // GOOGLE GIS & AUTH WORKFLOW
+        // ========================================================
+        function initGoogleGIS() {
+            if (window.google && google.accounts && googleClientId) {
+                try {
+                    google.accounts.id.initialize({
+                        client_id: googleClientId,
+                        callback: handleGoogleCredentialResponse,
+                        auto_select: false
+                    });
+
+                    const btnContainer = document.getElementById('g-login-btn-container');
+                    if (btnContainer) {
+                        google.accounts.id.renderButton(btnContainer, {
+                            theme: 'filled_black',
+                            size: 'large',
+                            shape: 'pill',
+                            text: 'continue_with',
+                            width: 250
+                        });
+                    }
+                } catch (e) {
+                    console.log("GIS init note:", e);
+                }
+            }
+        }
+
+        async function handleGoogleCredentialResponse(response) {
+            try {
+                showToast("Authenticating with Google...", "⏳");
+                const res = await fetch('/api/auth/google', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ credential: response.credential })
+                });
+
+                const data = await res.json();
+                if (data.success) {
+                    onLoginSuccess(data.user);
+                } else {
+                    showToast("Login error: " + (data.error || "Failed"), "❌");
+                }
+            } catch (err) {
+                showToast("Auth network issue: " + err.message, "❌");
+            }
+        }
+
+        async function devQuickLogin() {
+            try {
+                showToast("Signing in demo account...", "⚡");
+                const name = document.getElementById('form-user-name').value.trim() || 'Alex Rivera (Demo Client)';
+                const email = document.getElementById('form-user-email').value.trim() || 'alex.demo.client@gmail.com';
+
+                const res = await fetch('/api/auth/dev-login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name, email })
+                });
+
+                const data = await res.json();
+                if (data.success) {
+                    onLoginSuccess(data.user);
+                } else {
+                    showToast("Dev login error: " + data.error, "❌");
+                }
+            } catch (err) {
+                showToast("Dev login error: " + err.message, "❌");
+            }
+        }
+
+        function onLoginSuccess(user) {
+            currentUser = user;
+            closeGoogleModal();
+            updateUserUI(user);
+            showToast(`Welcome, ${user.name}! Authenticated.`, "✅");
+
+            if (pendingSendAfterLogin) {
+                pendingSendAfterLogin = false;
+                dispatchEmail();
+            }
+        }
+
+        function updateUserUI(user) {
+            if (!user) return;
+            const displayName = document.getElementById('user-display-name');
+            const displayEmail = document.getElementById('user-display-email');
+            const authBadge = document.getElementById('user-auth-badge');
+
+            if (displayName) displayName.textContent = user.name;
+            if (displayEmail) displayEmail.textContent = user.email;
+            if (authBadge) authBadge.textContent = "✓ Google Verified";
+
+            const nameInput = document.getElementById('form-user-name');
+            const emailInput = document.getElementById('form-user-email');
+            if (nameInput && !nameInput.value) nameInput.value = user.name;
+            if (emailInput && !emailInput.value) emailInput.value = user.email;
+        }
+
+        // ========================================================
+        // AI ENHANCE & AUTO MAIL WORKFLOW
+        // ========================================================
+        async function enhanceMailWithAI() {
+            const userName = document.getElementById('form-user-name').value.trim();
+            const userEmail = document.getElementById('form-user-email').value.trim();
+            const adminName = document.getElementById('form-admin-name').value.trim();
+            const adminEmail = document.getElementById('form-admin-email').value.trim();
+            const subject = document.getElementById('form-subject').value.trim();
+            const description = document.getElementById('form-desc').value.trim();
+            const refLink = document.getElementById('form-ref-link').value.trim();
+
+            if (!description && !subject) {
+                alert("Please enter a subject or description first so our AI can craft your proposal.");
+                return;
+            }
+
+            const enhanceBtn = document.getElementById('ai-enhance-btn');
+            const sendBtn = document.getElementById('send-mail-btn');
+            const placeholder = document.getElementById('ai-empty-placeholder');
+            const textarea = document.getElementById('enhanced-body-textarea');
+            const statusTag = document.getElementById('ai-status-tag');
+            const modelLabel = document.getElementById('ai-model-label');
+
+            enhanceBtn.disabled = true;
+            enhanceBtn.innerHTML = '<span>⚡ AI Crafting Proposal...</span>';
+            if (statusTag) statusTag.textContent = "Synthesizing with Groq...";
+
+            try {
+                const response = await fetch('/api/ai-enhance', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        user_name: userName,
+                        user_email: userEmail,
+                        admin_name: adminName,
+                        admin_email: adminEmail,
+                        subject: subject,
+                        description: description,
+                        reference_link: refLink
+                    })
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    if (placeholder) placeholder.style.display = 'none';
+                    if (textarea) {
+                        textarea.style.display = 'block';
+                        textarea.value = data.enhanced_body;
+                    }
+
+                    if (data.enhanced_subject) {
+                        document.getElementById('form-subject').value = data.enhanced_subject;
+                    }
+
+                    if (statusTag) statusTag.textContent = "AI Enhanced ✓";
+                    if (modelLabel) modelLabel.textContent = `Engine: ${data.model || 'Groq AI'}`;
+
+                    enhanceBtn.innerHTML = '<span>✨ Re-Enhance with AI</span>';
+                    enhanceBtn.disabled = false;
+                    
+                    if (sendBtn) {
+                        sendBtn.style.display = 'flex';
+                        sendBtn.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                    }
+
+                    showToast("Email enhanced with AI!", "✨");
+                } else {
+                    enhanceBtn.disabled = false;
+                    enhanceBtn.innerHTML = '<span>✨ AI Enhance Email</span>';
+                    alert("Enhancement error: " + (data.error || "Please try again"));
+                }
+            } catch (err) {
+                enhanceBtn.disabled = false;
+                enhanceBtn.innerHTML = '<span>✨ AI Enhance Email</span>';
+                alert("Request error: " + err.message);
+            }
+        }
+
+        function handleSendMailClick() {
+            if (!currentUser) {
+                pendingSendAfterLogin = true;
+                openGoogleModal();
+            } else {
+                dispatchEmail();
+            }
+        }
+
+        async function dispatchEmail() {
+            const userName = document.getElementById('form-user-name').value.trim() || (currentUser ? currentUser.name : '');
+            const userEmail = document.getElementById('form-user-email').value.trim() || (currentUser ? currentUser.email : '');
+            const adminName = document.getElementById('form-admin-name').value.trim();
+            const adminEmail = document.getElementById('form-admin-email').value.trim();
+            const subject = document.getElementById('form-subject').value.trim();
+            const textarea = document.getElementById('enhanced-body-textarea');
+            const desc = document.getElementById('form-desc').value.trim();
+            const body = (textarea && textarea.style.display !== 'none' && textarea.value) ? textarea.value : desc;
+            const refLink = document.getElementById('form-ref-link').value.trim();
+
+            if (!body) {
+                alert("Please provide an email message body before sending.");
+                return;
+            }
+
+            const sendBtn = document.getElementById('send-mail-btn');
+            if (sendBtn) {
+                sendBtn.disabled = true;
+                sendBtn.innerHTML = '<span>🚀 Dispatching to Ashis...</span>';
+            }
+
+            try {
+                const response = await fetch('/api/send-mail', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        user_name: userName,
+                        user_email: userEmail,
+                        admin_name: adminName,
+                        admin_email: adminEmail,
+                        subject: subject,
+                        body: body,
+                        reference_link: refLink
+                    })
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    if (data.delivery_method === 'smtp_live') {
+                        showToast(`Email delivered to ${adminName}'s inbox!`, "🎉");
+                    } else {
+                        showToast(`Opening Gmail to deliver to ${adminName}...`, "📧");
+                        if (data.gmail_compose_url) {
+                            setTimeout(() => {
+                                window.open(data.gmail_compose_url, '_blank');
+                            }, 500);
+                        } else if (data.mailto_url) {
+                            window.location.href = data.mailto_url;
+                        }
+                    }
+                    if (sendBtn) {
+                        sendBtn.innerHTML = '<span>✅ Message Sent!</span>';
+                        sendBtn.style.background = '#22c55e';
+                    }
+                } else if (data.requires_login) {
+                    pendingSendAfterLogin = true;
+                    openGoogleModal();
+                } else {
+                    alert("Sending failed: " + (data.error || "Unknown error"));
+                    if (sendBtn) {
+                        sendBtn.disabled = false;
+                        sendBtn.innerHTML = `<span>🚀 Send Email to ${adminName}</span>`;
+                    }
+                }
+            } catch (err) {
+                alert("Network error: " + err.message);
+                if (sendBtn) {
+                    sendBtn.disabled = false;
+                    sendBtn.innerHTML = `<span>🚀 Send Email to ${adminName}</span>`;
+                }
+            }
+        }
+
+        function openGoogleModal() {
+            const modal = document.getElementById('google-login-modal');
+            if (modal) {
+                modal.classList.add('show');
+                initGoogleGIS();
+            }
+        }
+
+        function closeGoogleModal() {
+            const modal = document.getElementById('google-login-modal');
+            if (modal) {
+                modal.classList.remove('show');
+            }
+        }
+
+        function showToast(message, icon = "✅") {
+            const toast = document.getElementById('toast-notify');
+            const toastTitle = document.getElementById('toast-title');
+            const toastMsg = document.getElementById('toast-msg');
+            const toastIcon = document.getElementById('toast-icon');
+
+            if (toast && toastTitle && toastMsg) {
+                toastTitle.textContent = message;
+                toastMsg.textContent = new Date().toLocaleTimeString();
+                if (toastIcon) toastIcon.textContent = icon;
+                toast.style.display = 'flex';
+                setTimeout(() => {
+                    toast.style.display = 'none';
+                }, 4500);
+            }
+        }
+    </script>
+</body>
+</html>

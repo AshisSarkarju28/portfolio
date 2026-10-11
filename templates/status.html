@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Developer Status Dashboard | Auth & Mail Monitor</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Inter:wght@400;500;600;700;800&display=swap');
+
+        :root {
+            --bg: #090a09;
+            --card-bg: #111311;
+            --border: #1f2520;
+            --neon-green: #4ee034;
+            --neon-dim: rgba(78, 224, 52, 0.15);
+            --danger: #ff4444;
+            --danger-dim: rgba(255, 68, 68, 0.15);
+            --text-main: #f0fdf0;
+            --text-muted: #889488;
+            --font-mono: 'JetBrains Mono', monospace;
+            --font-sans: 'Inter', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text-main);
+            font-family: var(--font-sans);
+            padding: 2rem;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .header-title {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .header-title h1 {
+            font-size: 1.6rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        .dev-badge {
+            background: var(--neon-dim);
+            color: var(--neon-green);
+            border: 1px solid var(--neon-green);
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn {
+            background: #1a1e1a;
+            color: var(--text-main);
+            border: 1px solid var(--border);
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn:hover {
+            border-color: var(--neon-green);
+            color: var(--neon-green);
+        }
+
+        .btn-primary {
+            background: var(--neon-green);
+            color: #000;
+            border-color: var(--neon-green);
+        }
+
+        .btn-primary:hover {
+            background: #39cc20;
+            color: #000;
+        }
+
+        .btn-danger {
+            background: var(--danger-dim);
+            color: var(--danger);
+            border-color: var(--danger);
+        }
+
+        .btn-danger:hover {
+            background: var(--danger);
+            color: #fff;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.2rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .card-title {
+            font-size: 0.9rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+        }
+
+        .status-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 14px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 700;
+        }
+
+        .status-pill.online {
+            background: var(--neon-dim);
+            color: var(--neon-green);
+            border: 1px solid var(--neon-green);
+        }
+
+        .status-pill.offline {
+            background: var(--danger-dim);
+            color: var(--danger);
+            border: 1px solid var(--danger);
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: currentColor;
+            box-shadow: 0 0 10px currentColor;
+        }
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-top: 1rem;
+        }
+
+        .user-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: 2px solid var(--neon-green);
+            object-fit: cover;
+            background: #222;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .user-details h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .user-details p {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            font-family: var(--font-mono);
+        }
+
+        .meta-list {
+            margin-top: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .meta-item {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            padding: 6px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+        }
+
+        .meta-label {
+            color: var(--text-muted);
+        }
+
+        .meta-value {
+            font-family: var(--font-mono);
+            color: var(--text-main);
+            font-weight: 600;
+        }
+
+        /* JSON Box */
+        .json-box {
+            background: #050605;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.2rem;
+            font-family: var(--font-mono);
+            font-size: 0.82rem;
+            color: #a3e635;
+            overflow-x: auto;
+            max-height: 250px;
+            white-space: pre-wrap;
+            word-break: break-all;
+        }
+
+        .table-responsive {
+            overflow-x: auto;
+            margin-top: 1rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+            text-align: left;
+        }
+
+        th {
+            padding: 10px 14px;
+            color: var(--text-muted);
+            border-bottom: 1px solid var(--border);
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+        }
+
+        td {
+            padding: 12px 14px;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            font-family: var(--font-mono);
+        }
+
+        .empty-history {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <div class="header-title">
+                <h1>Dev Status Center</h1>
+                <span class="dev-badge">API / Dev Route</span>
+            </div>
+            <div class="header-actions">
+                <a href="/" class="btn">← Back to Portfolio</a>
+                <a href="/status?format=json" class="btn" target="_blank">{ } Raw JSON</a>
+            </div>
+        </header>
+
+        <!-- Top Status Overview -->
+        <div class="grid">
+            
+            <!-- Auth Status Card -->
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-title">Google Authentication</span>
+                    {% if logged_in %}
+                        <span class="status-pill online"><span class="status-dot"></span> Logged In</span>
+                    {% else %}
+                        <span class="status-pill offline"><span class="status-dot"></span> Not Logged In</span>
+                    {% endif %}
+                </div>
+
+                {% if logged_in %}
+                    <div class="user-profile">
+                        {% if user.picture %}
+                            <img src="{{ user.picture }}" alt="User Avatar" class="user-avatar">
+                        {% else %}
+                            <div class="user-avatar">{{ user.name[0] if user.name else "U" }}</div>
+                        {% endif %}
+                        <div class="user-details">
+                            <h3>{{ user.name or "Anonymous User" }}</h3>
+                            <p>{{ user.email }}</p>
+                        </div>
+                    </div>
+                    <div class="meta-list">
+                        <div class="meta-item">
+                            <span class="meta-label">Provider</span>
+                            <span class="meta-value">{{ user.auth_provider or "google" }}</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">Google Sub ID</span>
+                            <span class="meta-value">{{ user.sub or user.id or "N/A" }}</span>
+                        </div>
+                    </div>
+                    <div style="margin-top: 1.2rem;">
+                        <a href="/api/auth/logout" class="btn btn-danger" style="width: 100%; justify-content: center;">Sign Out Test User</a>
+                    </div>
+                {% else %}
+                    <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.5rem; line-height: 1.5;">
+                        No user session is currently active. The user can browse the portfolio freely without signing in. A Google login prompt will appear when sending an email.
+                    </p>
+                    <div style="margin-top: 1.5rem; display: flex; gap: 10px; flex-wrap: wrap;">
+                        <button onclick="quickDevLogin()" class="btn btn-primary" style="flex: 1; justify-content: center;">
+                            ⚡ Quick Test Login
+                        </button>
+                    </div>
+                {% endif %}
+            </div>
+
+            <!-- Admin & Configuration Card -->
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-title">System & Admin Config</span>
+                    <span class="status-pill online"><span class="status-dot"></span> Active</span>
+                </div>
+
+                <div class="meta-list">
+                    <div class="meta-item">
+                        <span class="meta-label">Admin Name</span>
+                        <span class="meta-value" style="color: var(--neon-green);">{{ admin.name }}</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Admin Email</span>
+                        <span class="meta-value">{{ admin.email }}</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Google Client ID</span>
+                        <span class="meta-value">
+                            {% if google_client_id_configured %}
+                                <span style="color: var(--neon-green);">Configured ✓</span>
+                            {% else %}
+                                <span style="color: var(--danger);">Missing ✗</span>
+                            {% endif %}
+                        </span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Groq AI Engine</span>
+                        <span class="meta-value">
+                            {% if groq_configured %}
+                                <span style="color: var(--neon-green);">Live (qwen/qwen3.8-27b) ✓</span>
+                            {% else %}
+                                <span style="color: #ffaa00;">Fallback Template Mode</span>
+                            {% endif %}
+                        </span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Mails Sent Count</span>
+                        <span class="meta-value">{{ sent_emails_count }}</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Sent Emails Log -->
+        <div class="card" style="margin-bottom: 2rem;">
+            <div class="card-header">
+                <span class="card-title">Dispatched Emails Log (Outbox)</span>
+                <span style="font-size: 0.8rem; color: var(--text-muted); font-family: var(--font-mono);">{{ recent_emails|length }} recorded</span>
+            </div>
+
+            {% if recent_emails %}
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Timestamp</th>
+                                <th>Sender (User)</th>
+                                <th>Recipient</th>
+                                <th>Subject</th>
+                                <th>Delivery Mode</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for mail in recent_emails %}
+                            <tr>
+                                <td>{{ mail.timestamp[:19] }}</td>
+                                <td>{{ mail.user_name }} ({{ mail.user_email }})</td>
+                                <td>{{ mail.admin_email }}</td>
+                                <td style="color: var(--neon-green);">{{ mail.subject }}</td>
+                                <td><span class="status-pill online" style="font-size: 0.7rem; padding: 2px 8px;">{{ mail.delivery_method }}</span></td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            {% else %}
+                <div class="empty-history">
+                    No emails dispatched yet during this server session. Send a test inquiry from the portfolio page!
+                </div>
+            {% endif %}
+        </div>
+
+        <!-- Raw JSON Preview -->
+        <div class="card">
+            <div class="card-header">
+                <span class="card-title">Live Session JSON Payload</span>
+                <button onclick="navigator.clipboard.writeText(document.getElementById('raw-json').innerText); alert('Copied JSON!');" class="btn" style="padding: 4px 10px; font-size: 0.75rem;">Copy</button>
+            </div>
+            <div class="json-box" id="raw-json">{{ json_payload }}</div>
+        </div>
+
+    </div>
+
+    <script>
+        async function quickDevLogin() {
+            try {
+                const res = await fetch('/api/auth/dev-login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        name: 'Alex Rivera (Dev Test)',
+                        email: 'alex.rivera.test@gmail.com'
+                    })
+                });
+                const data = await res.json();
+                if (data.success) {
+                    window.location.reload();
+                } else {
+                    alert('Login failed: ' + data.error);
+                }
+            } catch (err) {
+                alert('Request failed: ' + err.message);
+            }
+        }
+    </script>
+</body>
+</html>

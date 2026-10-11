@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Authentication | {{ admin_name }} Sarkar</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <style>
+        :root {
+            --bg-dark: #08060a;
+            --bg-card: rgba(22, 16, 26, 0.85);
+            --border-glow: rgba(255, 72, 32, 0.35);
+            --accent: #ff4820;
+            --accent-glow: rgba(255, 72, 32, 0.45);
+            --neon-green: #52ea38;
+            --text-main: #f5f5f7;
+            --text-muted: #95929e;
+            --font-sans: 'Outfit', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: var(--font-sans);
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem 1.5rem;
+            position: relative;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 50% 15%, rgba(255, 72, 32, 0.15) 0%, transparent 60%),
+                radial-gradient(circle at 85% 80%, rgba(214, 36, 159, 0.12) 0%, transparent 50%),
+                radial-gradient(circle at 15% 85%, rgba(82, 234, 56, 0.08) 0%, transparent 50%);
+        }
+
+        /* Subtle grid background */
+        body::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+            background-size: 32px 32px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .login-card {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            max-width: 480px;
+            background: var(--bg-card);
+            backdrop-filter: blur(25px);
+            border: 1.5px solid rgba(255, 255, 255, 0.12);
+            border-radius: 32px;
+            padding: 3rem 2.5rem;
+            box-shadow: 
+                0 30px 80px rgba(0, 0, 0, 0.9),
+                0 0 50px rgba(255, 72, 32, 0.12);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .login-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 20%;
+            right: 20%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--accent), #ff7744, transparent);
+            border-radius: 3px;
+        }
+
+        .lock-icon-wrap {
+            width: 68px;
+            height: 68px;
+            border-radius: 20px;
+            background: linear-gradient(135deg, rgba(255, 72, 32, 0.18), rgba(214, 36, 159, 0.15));
+            border: 1.5px solid var(--border-glow);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 10px 25px rgba(255, 72, 32, 0.25);
+        }
+
+        .lock-icon-wrap svg {
+            width: 32px;
+            height: 32px;
+            stroke: var(--accent);
+        }
+
+        .security-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            background: rgba(255, 72, 32, 0.1);
+            border: 1px solid rgba(255, 72, 32, 0.3);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: var(--accent);
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+        }
+
+        .security-dot {
+            width: 6px;
+            height: 6px;
+            background: var(--accent);
+            border-radius: 50%;
+            box-shadow: 0 0 6px var(--accent);
+            animation: blinkDot 1.5s infinite alternate;
+        }
+
+        @keyframes blinkDot {
+            0% { opacity: 1; transform: scale(1); }
+            100% { opacity: 0.3; transform: scale(0.8); }
+        }
+
+        .login-title {
+            font-size: 1.85rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            color: #fff;
+            margin-bottom: 0.5rem;
+        }
+
+        .login-sub {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+            margin-bottom: 1.8rem;
+        }
+
+        .admin-email-pill {
+            display: inline-block;
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            padding: 6px 14px;
+            border-radius: 12px;
+            font-family: var(--font-mono);
+            font-size: 0.82rem;
+            color: #fff;
+            margin-top: 6px;
+            word-break: break-all;
+        }
+
+        .admin-email-pill span {
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        /* Error Banner */
+        .auth-error-banner {
+            width: 100%;
+            background: rgba(239, 68, 68, 0.15);
+            border: 1px solid rgba(239, 68, 68, 0.4);
+            border-radius: 14px;
+            padding: 12px 16px;
+            margin-bottom: 1.5rem;
+            display: none;
+            text-align: left;
+            font-size: 0.85rem;
+            color: #fca5a5;
+            line-height: 1.4;
+        }
+
+        .auth-error-banner.show {
+            display: block;
+            animation: shake 0.4s ease-in-out;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            20%, 60% { transform: translateX(-6px); }
+            40%, 80% { transform: translateX(6px); }
+        }
+
+        /* Active User Session Notice if already logged in with wrong account */
+        .session-mismatch-banner {
+            width: 100%;
+            background: rgba(234, 179, 8, 0.12);
+            border: 1px solid rgba(234, 179, 8, 0.35);
+            border-radius: 14px;
+            padding: 12px 16px;
+            margin-bottom: 1.5rem;
+            text-align: left;
+            font-size: 0.84rem;
+            color: #fef08a;
+            line-height: 1.45;
+        }
+
+        /* Google GIS Container */
+        .google-gis-wrap {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            min-height: 44px;
+        }
+
+        /* Divider */
+        .login-divider {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 1.5rem;
+            color: var(--text-muted);
+            font-size: 0.78rem;
+            font-family: var(--font-mono);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .login-divider::before, .login-divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Quick Admin Dev Login Button */
+        .btn-admin-quick-login {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #fff;
+            padding: 12px 20px;
+            border-radius: 16px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: all 0.25s ease;
+        }
+
+        .btn-admin-quick-login:hover {
+            background: rgba(255, 72, 32, 0.15);
+            border-color: var(--accent);
+            color: #fff;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(255, 72, 32, 0.2);
+        }
+
+        /* Footer links */
+        .login-footer-links {
+            margin-top: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            font-size: 0.85rem;
+        }
+
+        .login-footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.25s ease;
+        }
+
+        .login-footer-links a:hover {
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-card">
+        
+        <div class="lock-icon-wrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+            </svg>
+        </div>
+
+        <div class="security-badge">
+            <span class="security-dot"></span>
+            <span>RESTRICTED PORTAL // LEVEL 1</span>
+        </div>
+
+        <h1 class="login-title">Admin Studio Login</h1>
+        
+        <p class="login-sub">
+            This dashboard is protected. Only the registered administrator Gmail has authorized access:
+            <span class="admin-email-pill"><span>ADMIN:</span> {{ admin_email }}</span>
+        </p>
+
+        <!-- Current Session Mismatch Notice (if logged in with non-admin account) -->
+        {% if current_user and current_user.email != admin_email %}
+        <div class="session-mismatch-banner">
+            <strong>⚠️ Not Authorized:</strong> You are currently signed in as <strong>{{ current_user.email }}</strong>. This account does not possess administrator privileges. Please sign in with <strong>{{ admin_email }}</strong>.
+        </div>
+        {% endif %}
+
+        <!-- Error Banner -->
+        <div class="auth-error-banner" id="auth-error-banner"></div>
+
+        <!-- Google Identity Services Button Container -->
+        <div class="google-gis-wrap" id="google-login-btn"></div>
+
+        <div class="login-divider">or developer mode</div>
+
+        <!-- Direct Admin Verification Button (Development / Local testing) -->
+        <button type="button" class="btn-admin-quick-login" onclick="adminQuickAuth()">
+            <span>⚡ Authenticate Registered Admin (Dev)</span>
+        </button>
+
+        <div class="login-footer-links">
+            <a href="/">← Return to Portfolio</a>
+            {% if current_user %}
+            <span style="color: rgba(255,255,255,0.15);">•</span>
+            <a href="/api/auth/logout" style="color: #ef4444;">Sign Out ({{ current_user.email }})</a>
+            {% endif %}
+        </div>
+
+    </div>
+
+    <!-- Hidden Config Data -->
+    <div id="admin-config" data-client-id="{{ google_client_id }}" data-admin-email="{{ admin_email }}" style="display:none;"></div>
+
+    <script>
+        const configEl = document.getElementById('admin-config');
+        const googleClientId = configEl?.getAttribute('data-client-id') || "";
+        const expectedAdminEmail = (configEl?.getAttribute('data-admin-email') || "").trim().toLowerCase();
+        const errorBanner = document.getElementById('auth-error-banner');
+
+        function showError(msg) {
+            errorBanner.textContent = msg;
+            errorBanner.classList.add('show');
+        }
+
+        function hideError() {
+            errorBanner.classList.remove('show');
+        }
+
+        // Initialize Google Identity Services
+        window.onload = function () {
+            if (window.google && googleClientId) {
+                google.accounts.id.initialize({
+                    client_id: googleClientId,
+                    callback: handleGoogleAdminCredentialResponse,
+                    auto_select: false
+                });
+
+                google.accounts.id.renderButton(
+                    document.getElementById('google-login-btn'),
+                    {
+                        theme: 'filled_black',
+                        size: 'large',
+                        text: 'signin_with',
+                        shape: 'pill',
+                        width: '320'
+                    }
+                );
+            }
+        };
+
+        async function handleGoogleAdminCredentialResponse(response) {
+            hideError();
+            try {
+                const res = await fetch('/api/auth/google', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ credential: response.credential })
+                });
+
+                const data = await res.json();
+                if (data.success && data.user) {
+                    const userEmail = (data.user.email || "").trim().toLowerCase();
+                    if (userEmail === expectedAdminEmail) {
+                        // Authorized Admin! Redirect directly into the dashboard
+                        window.location.href = '/admin';
+                    } else {
+                        showError(`Access Denied: Logged in as ${data.user.email}. Only registered admin (${expectedAdminEmail}) can access this dashboard.`);
+                    }
+                } else {
+                    showError(data.error || "Google authentication failed. Please try again.");
+                }
+            } catch (err) {
+                showError("Authentication error: " + err.message);
+            }
+        }
+
+        // Developer Direct Admin Sign-In (Sets session specifically to registered admin)
+        async function adminQuickAuth() {
+            hideError();
+            try {
+                const res = await fetch('/api/auth/admin-login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email: expectedAdminEmail })
+                });
+
+                const data = await res.json();
+                if (data.success) {
+                    window.location.href = '/admin';
+                } else {
+                    showError(data.error || "Admin verification failed.");
+                }
+            } catch (err) {
+                showError("Admin verification request error: " + err.message);
+            }
+        }
+    </script>
+</body>
+</html>
